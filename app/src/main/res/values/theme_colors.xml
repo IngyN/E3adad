@@ -9,4 +9,5 @@
     <color name="secondarytext" >#727272</color>
     <color name="divider" >#B6B6B6</color>
     <color name="windowBack" >#57cef6f8</color>
+    <color name= "navColor">#ff014441</color>
 </resources>

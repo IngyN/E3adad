@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="actionbar">
+        <item name="android:colorPrimary">@color/primary</item>
+       <item name="android:windowBackground">@color/windowBack</item>
+        <item name = "android:actionBarSize">70dp</item>
+        <item name="android:background">@drawable/actionbarD</item>
+    </style>
+</resources>
