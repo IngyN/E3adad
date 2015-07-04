@@ -1,9 +1,18 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
@@ -13,6 +22,12 @@ public class Camera_scan extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_scan);
+
+        Bitmap Reading = (Bitmap) getIntent().getExtras().get("Reading");
+        ImageView imageView;
+        imageView = (ImageView) findViewById(R.id.photo);
+        imageView.setImageBitmap(Reading);
+//captured picture uri
     }
 
     @Override

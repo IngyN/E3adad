@@ -4,6 +4,7 @@ import edu.aucegypt.ingyn.e3adad.activities.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,7 @@ import edu.aucegypt.ingyn.e3adad.R;
  *
  * @see SystemUiHider
  */
-public class FullscreenActivity extends Activity {
+public class SplashScreen extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -91,7 +92,7 @@ public class FullscreenActivity extends Activity {
                             controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
                         }
 
-                        if (visible && AUTO_HIDE) {
+                        if (visible) {
                             // Schedule a hide().
                             delayedHide(AUTO_HIDE_DELAY_MILLIS);
                         }
@@ -114,6 +115,20 @@ public class FullscreenActivity extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        Thread timerThread = new Thread(){
+            public void run(){
+                try{
+                    sleep(3000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }finally{
+                    Intent i = new Intent(SplashScreen.this,MainScreen.class);
+                    startActivity(i);
+                }
+            }
+        };
+        timerThread.start();
     }
 
     @Override
