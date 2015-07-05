@@ -16,27 +16,53 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import edu.aucegypt.ingyn.e3adad.R;
 
 
 public class MainScreen extends Activity {
     private ImageButton take_photo,payment,statistics;
     final int REQUEST_PHOTO = 1;
+    final int startDay = 20, endDay = 31;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
       //  Context context = getActivity();
-    /*    take_photo = (ImageButton)findViewById(R.id.take_photo);
+        // check the current day of the month to allow taking pictures or not
+        Calendar calendar = Calendar.getInstance();
+        final int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        take_photo = (ImageButton)findViewById(R.id.take_photo);
         take_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
-                startActivity(mainToCam);*/
-             //   TakePhoto(v);
-         //   }
-       // });
+                if(currentDay >= startDay && currentDay<= endDay) {
+                    TakePhoto(v);
+                }
+                else{
+                    Toast.makeText(MainScreen.this,"You are not currently allowed to take a picture. "+ (startDay - currentDay)+" days are left.", Toast.LENGTH_LONG).show();
+                }
+            }
+         });
+    //    payment = (ImageButton)findViewById(R.id.pay);
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainToPay = new Intent(MainScreen.this, PaymentHistory.class);
+                startActivity(mainToPay);
+            }
+        });
+      //  statistics = (ImageButton)findViewById(R.id.statistics);
+        statistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainToStat = new Intent(MainScreen.this, Statistics.class);
+                startActivity(mainToStat);
+            }
+        });
         // get action bar
         ActionBar actionBar = getActionBar();
 

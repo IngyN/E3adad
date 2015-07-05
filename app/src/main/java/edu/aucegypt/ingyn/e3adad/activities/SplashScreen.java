@@ -123,7 +123,7 @@ public class SplashScreen extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent i = new Intent(SplashScreen.this,MainScreen.class);
+                    Intent i = new Intent(SplashScreen.this,PaymentHistory.class);
                     startActivity(i);
                 }
             }
