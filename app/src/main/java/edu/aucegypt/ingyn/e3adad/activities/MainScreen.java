@@ -1,5 +1,6 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 import edu.aucegypt.ingyn.e3adad.R;
 
 
-public class MainScreen extends ActionBarActivity {
+public class MainScreen extends Activity {
     private ImageButton take_photo,payment,statistics;
     final int REQUEST_PHOTO = 1;
     @Override
@@ -36,6 +37,13 @@ public class MainScreen extends ActionBarActivity {
              //   TakePhoto(v);
          //   }
        // });
+        // get action bar
+        ActionBar actionBar = getActionBar();
+
+        // Enabling Up / Back navigation
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        actionBar.setIcon(getDrawable(R.drawable.logo));
 
     }
     public void TakePhoto(View v){
@@ -68,6 +76,7 @@ public class MainScreen extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
