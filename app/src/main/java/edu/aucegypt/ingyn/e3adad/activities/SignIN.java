@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aucegypt.ingyn.e3adad.R;
+import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class SignIN extends ActionBarActivity {
     private EditText nationalID_in,serialNumber_in;

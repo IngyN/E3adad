@@ -1,4 +1,4 @@
-package edu.aucegypt.ingyn.e3adad.activities;
+package edu.aucegypt.ingyn.e3adad.network;
 
 import android.content.Context;
 import android.graphics.Bitmap;
