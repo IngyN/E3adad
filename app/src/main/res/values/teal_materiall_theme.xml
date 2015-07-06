@@ -11,7 +11,7 @@
         <item name = "android:divider">@color/divider</item>
         <item name = "android:textColorSecondary">@color/secondarytext</item>
         <item name = "android:textColorPrimary"> @color/primarytext</item>
-        <item name= "android:navigationBarColor">@color/navColor</item>
+        <item name= "android:actionBarStyle">@style/actionBar</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:icon">@drawable/logo</item>
         <item name="android:windowBackground">@color/windowBack</item>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="actionbar" parent= "android:Widget.Material.ActionBar">
+    <style name="actionBar" parent= "android:Widget.ActionBar">
         <item name="android:colorPrimary">@color/primary</item>
        <!--<item name="android:windowBackground">@color/windowBack</item>-->
-        <!--<item name = "android:actionBarSize">70dp</item>-->
+        <item name = "android:actionBarSize">70dp</item>
+        <item name = "android:displayOptions">useLogo|showHome|showTitle</item>
+        <item name ="android:background">@color/primary</item>
+        <item name = "android:actionBarItemBackground">@color/primary</item>
     </style>
 </resources>
