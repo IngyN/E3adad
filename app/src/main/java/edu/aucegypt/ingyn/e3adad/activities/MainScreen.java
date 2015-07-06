@@ -13,28 +13,36 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import edu.aucegypt.ingyn.e3adad.R;
 
 
 public class MainScreen extends Activity {
     private ImageButton take_photo,payment,statistics;
     final int REQUEST_PHOTO = 1;
+    final int startDay = 20, endDay = 31;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Calendar calendar = Calendar.getInstance();
+        final int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
       //  Context context = getActivity();
-    /*    take_photo = (ImageButton)findViewById(R.id.take_photo);
+        take_photo = (ImageButton)findViewById(R.id.take_photo);
         take_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
-                startActivity(mainToCam);*/
-             //   TakePhoto(v);
-         //   }
-       // });
+                if(currentDay >= startDay && currentDay<= endDay) {
+                    TakePhoto(v);
+                }
+                else{
+                    Toast.makeText(MainScreen.this,"You are not currently allowed to take a picture. "+ (startDay - currentDay)+" days are left.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         // get action bar
         ActionBar actionBar = getActionBar();
 

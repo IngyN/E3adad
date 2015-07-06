@@ -27,7 +27,23 @@ public class SplashScreen extends Activity {
 
         setContentView(R.layout.activity_fullscreen);
 
+        Thread t=new Thread()
+        {
+            public void run()
+            {
+                try {
+                    sleep(3000);
+                    finish();
+                    Intent cv=new Intent(SplashScreen.this, SignIN.class);
+                    startActivity(cv);
+                }
 
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        t.start();
     }
 
     @Override
