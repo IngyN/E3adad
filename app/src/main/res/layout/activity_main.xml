@@ -46,9 +46,9 @@
         android:scaleType="fitXY"
         android:src="@drawable/main"
         android:background="@android:color/transparent"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="95dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/update" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,17 +70,6 @@
         android:layout_below="@+id/update"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:id="@+id/imageView3"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView"
-        android:src="@drawable/actionbard"
-        android:scaleType="fitXY"
-        android:layout_alignStart="@+id/bottomenu"
-        android:layout_alignParentBottom="false" />
 
     <TextView
         android:layout_width="wrap_content"

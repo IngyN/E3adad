@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="actionbar">
+    <style name="actionbar" parent= "android:Widget.Material.ActionBar">
         <item name="android:colorPrimary">@color/primary</item>
-       <item name="android:windowBackground">@color/windowBack</item>
-        <item name = "android:actionBarSize">70dp</item>
-        <item name="android:background">@drawable/actionbard</item>
+       <!--<item name="android:windowBackground">@color/windowBack</item>-->
+        <!--<item name = "android:actionBarSize">70dp</item>-->
     </style>
 </resources>

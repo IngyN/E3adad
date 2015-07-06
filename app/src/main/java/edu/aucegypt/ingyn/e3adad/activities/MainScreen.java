@@ -22,6 +22,7 @@ import edu.aucegypt.ingyn.e3adad.R;
 public class MainScreen extends Activity {
     private ImageButton take_photo,payment,statistics;
     final int REQUEST_PHOTO = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
