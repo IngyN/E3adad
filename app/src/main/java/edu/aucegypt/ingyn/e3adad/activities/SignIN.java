@@ -1,18 +1,82 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
 public class SignIN extends ActionBarActivity {
-
+    private EditText nationalID_in,serialNumber_in;
+    private Button register_user;
+    private int nationalID,serialNumber;
+    private String db_url = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        nationalID_in = (EditText)findViewById(R.id.national_id);
+        serialNumber_in = (EditText)findViewById(R.id.serial_number);
+        register_user = (Button) findViewById(R.id.register);
+        register_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s1 = nationalID_in.getText().toString();
+                String s2 = serialNumber_in.getText().toString();
+                if (s1.length() <= 14) {
+                    Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
+                } else {
+                    nationalID = Integer.parseInt(s1);
+                    //still needs checking for the serial Number
+                    serialNumber = Integer.parseInt(s2);
+                    RegisterNewUser();
+                    Intent regToMain = new Intent(SignIN.this, MainScreen.class);
+                    startActivity(regToMain);
+                }
+            }
+        });
+
+    }
+    private void RegisterNewUser(){
+        JSONObject newUser = new JSONObject();
+        try {
+            newUser.put("nationalID",nationalID);
+            newUser.put("serialNumber",serialNumber);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // POST Request to send Data to the database
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, db_url,newUser ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(SignIN.this, response.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(SignIN.this, "Network error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        QueueSingleton.getInstance(this).addToRequestQueue(postRequest);
     }
 
     @Override

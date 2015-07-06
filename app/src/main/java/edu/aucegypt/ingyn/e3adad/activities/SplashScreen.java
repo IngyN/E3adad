@@ -114,8 +114,8 @@ public class SplashScreen extends Activity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+        // show the screen for 3 seconds
         Thread timerThread = new Thread(){
             public void run(){
                 try{
@@ -123,7 +123,7 @@ public class SplashScreen extends Activity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    Intent i = new Intent(SplashScreen.this,PaymentHistory.class);
+                    Intent i = new Intent(SplashScreen.this,SignIN.class);
                     startActivity(i);
                 }
             }
