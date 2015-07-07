@@ -1,6 +1,5 @@
-package edu.aucegypt.ingyn.e3adad.activities.models;
+package edu.aucegypt.ingyn.e3adad.models;
 
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +28,7 @@ public class user {
 
     private int device_id;
 
-    private Date Reg_date;
+    private Date reg_date;
 
     private boolean verified;
 
@@ -38,9 +37,19 @@ public class user {
     public user() { }
 
     public user( int id, String username, String first_name, String last_name,  String mobile, String address,
-                    String email, String national_id, int device_id, String Reg_date, boolean verified)
+                    String email, String national_id, int device_id, String reg_date, boolean verified)
     {
-
+        setId(id);
+        setUsername(username);
+        setFirst_name(first_name);
+        setLast_name(last_name);
+        setMobile(mobile);
+        setAddress(address);
+        setEmail(email);
+        setNational_id(national_id);
+        setDevice_id(device_id);
+        setReg_date(reg_date);
+        setVerified(verified);
     }
 
     //setters
@@ -102,7 +111,7 @@ public class user {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        this.Reg_date = inputDate;
+        this.reg_date = inputDate;
     }
 
     void setVerified(boolean verified)
@@ -115,6 +124,12 @@ public class user {
         this.verified = true;
     }
 
+    //Assign Device ID to this user and copy this user_id to the device
+    void assignDevice(device d)
+    {
+        this.setDevice_id(d.getId());
+        d.setUser_id(this.getId());
+    }
 
     //getters
     int getId()
@@ -169,13 +184,13 @@ public class user {
 
     Date getReg_date()
     {
-        return this.Reg_date;
+        return this.reg_date;
     }
 
     String getRegDateString()       //return reg_Date as a string
     {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = fmt.format(this.Reg_date);
+        String dateString = fmt.format(this.reg_date);
         return dateString;
     }
 
@@ -192,6 +207,7 @@ public class user {
         return this.verified;
     }
 
+    // JSON conversion
     JSONObject toJSON (){
         JSONObject obj = new JSONObject();
 
