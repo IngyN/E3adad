@@ -13,4 +13,5 @@
     <string name="title_activity_payment_history">PaymentHistory</string>
     <string name="title_activity_sign_in">SignIN</string>
     <string name="title_activity_payment">PaymentActivity</string>
+    <string name="title_activity_temporary">Temporary</string>
 </resources>

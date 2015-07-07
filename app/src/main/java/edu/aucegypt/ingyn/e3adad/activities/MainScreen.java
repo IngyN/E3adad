@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import edu.aucegypt.ingyn.e3adad.R;
 public class MainScreen extends Activity {
     private ImageButton take_photo,payment,statistics;
     final int REQUEST_PHOTO = 1;
+    final int PIC_CROP = 2;
     final int startDay = 20, endDay = 31;
 
     @Override
@@ -35,12 +37,14 @@ public class MainScreen extends Activity {
         take_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentDay >= startDay && currentDay<= endDay) {
+                // Check if the user is allowed to take a photo
+         /*       if(currentDay >= startDay && currentDay<= endDay) {
                     TakePhoto(v);
                 }
                 else{
                     Toast.makeText(MainScreen.this,"You are not currently allowed to take a picture. "+ (startDay - currentDay)+" days are left.", Toast.LENGTH_LONG).show();
-                }
+                }*/
+                TakePhoto(v);
             }
         });
         // get action bar
@@ -72,16 +76,53 @@ public class MainScreen extends Activity {
         }
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK){
+        if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
-            mainToCam.putExtra("Reading",photo);
+            //  performCrop(data.getData());
+            Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
+            mainToCam.putExtra("Reading", photo);
             startActivity(mainToCam);
         }
-        else{
-            startActivity(new Intent(this,MainScreen.class));
+        else {
+            startActivity(new Intent(this, MainScreen.class));
         }
     }
+    /*    else if(requestCode == PIC_CROP){
+                Bundle extras = data.getExtras();
+                Bitmap thePic = extras.getParcelable("data");
+                Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
+                mainToCam.putExtra("Reading",thePic);
+                startActivity(mainToCam);
+        }
+        else {
+            startActivity(new Intent(this, MainScreen.class));
+        }
+    }
+    private void performCrop(Uri picUri){
+        try {
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            //indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            //set crop properties
+            cropIntent.putExtra("crop", "true");
+            //indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            //indicate output X and Y
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            //retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            //start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, PIC_CROP);
+        }
+        catch(ActivityNotFoundException anfe){
+            //display an error message
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

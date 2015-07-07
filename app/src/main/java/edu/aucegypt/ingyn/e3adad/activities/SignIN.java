@@ -31,7 +31,7 @@ public class SignIN extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_login);
 
         nationalID_in = (EditText)findViewById(R.id.national_id);
         serialNumber_in = (EditText)findViewById(R.id.serial_number);
@@ -47,7 +47,7 @@ public class SignIN extends ActionBarActivity {
                     nationalID = Integer.parseInt(s1);
                     //still needs checking for the serial Number
                     serialNumber = Integer.parseInt(s2);
-                    RegisterNewUser();
+                 //   RegisterNewUser();
                     Intent regToMain = new Intent(SignIN.this, MainScreen.class);
                     startActivity(regToMain);
                 }
