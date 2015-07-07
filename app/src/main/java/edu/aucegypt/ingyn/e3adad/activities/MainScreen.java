@@ -77,17 +77,14 @@ public class MainScreen extends Activity {
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            //  performCrop(data.getData());
-            Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
+         //   Bitmap photo = (Bitmap) data.getExtras().get("data");
+            performCrop(data.getData());
+          /*  Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
             mainToCam.putExtra("Reading", photo);
-            startActivity(mainToCam);
+            startActivity(mainToCam);*/
         }
-        else {
-            startActivity(new Intent(this, MainScreen.class));
-        }
-    }
-    /*    else if(requestCode == PIC_CROP){
+
+       else if(requestCode == PIC_CROP){
                 Bundle extras = data.getExtras();
                 Bitmap thePic = extras.getParcelable("data");
                 Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
@@ -122,7 +119,7 @@ public class MainScreen extends Activity {
             Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
             toast.show();
         }
-    }*/
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
