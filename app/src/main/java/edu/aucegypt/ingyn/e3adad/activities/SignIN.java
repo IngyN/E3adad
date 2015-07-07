@@ -52,6 +52,8 @@ public class SignIN extends Activity {
                     Toast.makeText(SignIN.this, "Invalid Serial Number", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    // Maybe we should keep it as a string
+                    // the number is too big....
                     nationalID = Integer.parseInt(s1);
                     //still needs checking for the serial Number
                     serialNumber = Integer.parseInt(s2);
