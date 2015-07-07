@@ -10,25 +10,27 @@ import java.util.Date;
 /**
  * Created by Home on 7/7/15.
  */
-public class device {
+public class transaction {
 
     private int id;
 
     private int user_id;
-    private int serial;
+    private Date t_date;
 
-    private Date reg_date;
+    private String other_data;
+    private double price;
 
 
     //constructors
-    public device() { }
+    public transaction() { }
 
-    public device( int id, int user_id, int serial, String reg_date)
+    public transaction( int id, int user_id, String t_date, String other_data, double price)
     {
         setId(id);
         setUser_id(user_id);
-        setSerial(serial);
-        setReg_date(reg_date);
+        setT_date(t_date);
+        setOther_data(other_data);
+        setPrice(price);
     }
 
 
@@ -43,24 +45,31 @@ public class device {
         this.user_id = user_id;
     }
 
-    public void setSerial(int serial)
-    {
-        this.serial = serial;
-    }
 
-    public void setReg_date(String reg_date)       //takes string and stores it as date
+
+    public void setT_date(String t_date)       //takes string and stores it as date
     {
         SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy HH:mm");
 
         Date inputDate = new Date();
         try {
-            inputDate = fmt.parse(reg_date);
+            inputDate = fmt.parse(t_date);
         }catch (ParseException e)
         {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        this.reg_date = inputDate;
+        this.t_date = inputDate;
+    }
+
+    public void setOther_data(String other_data)
+    {
+        this.other_data = other_data;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
     }
 
 
@@ -75,21 +84,26 @@ public class device {
         return this.user_id;
     }
 
-    public int getSerial()
+    public Date getT_date()
     {
-        return this.serial;
+        return this.t_date;
     }
 
-    public Date getReg_date()
-    {
-        return this.reg_date;
-    }
-
-    public String getRegDateString()       //return reg_Date as a string
+    public String getT_dateString()       //return reg_Date as a string
     {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = fmt.format(this.reg_date);
+        String dateString = fmt.format(this.t_date);
         return dateString;
+    }
+
+    public String getOther_data()
+    {
+        return  this.other_data;
+    }
+
+    public double getPrice()
+    {
+        return  this.price;
     }
 
 
@@ -101,8 +115,10 @@ public class device {
 
             obj.put("id", this.getId());
             obj.put("user_id", this.getUser_id());
-            obj.put("serial", this.getSerial());
-            obj.put("reg_date", this.getRegDateString());
+            obj.put("t_date", this.getT_dateString());
+            obj.put("other_data", this.getOther_data());
+            obj.put("price", this.getPrice());
+
 
         }catch (JSONException e){
             e.printStackTrace();
