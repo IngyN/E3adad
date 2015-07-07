@@ -124,8 +124,8 @@ public class user {
         this.verified = true;
     }
 
-    //Assign Device ID to this user and copy this user_id to the device
-    void assignDevice(device d)
+
+    void assignDevice(device d)         //Assign Device ID to this user and copy this user_id to the device
     {
         this.setDevice_id(d.getId());
         d.setUser_id(this.getId());

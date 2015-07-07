@@ -31,6 +31,7 @@ public class device {
         setReg_date(reg_date);
     }
 
+
     //setters
     void setId(int id)
     {
