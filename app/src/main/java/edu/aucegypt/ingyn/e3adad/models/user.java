@@ -53,53 +53,53 @@ public class user {
     }
 
     //setters
-    void setId(int id)
+    public void setId(int id)
     {
         this.id = id;
     }
 
-    void setUsername(String username)
+    public void setUsername(String username)
     {
         this.username = username;
     }
 
-    void setFirst_name(String first_name)
+    public void setFirst_name(String first_name)
     {
         this.first_name = first_name;
     }
 
-    void setLast_name(String last_name)
+    public void setLast_name(String last_name)
     {
         this.last_name = last_name;
     }
 
-    void setMobile(String mobile)
+    public void setMobile(String mobile)
     {
         this.mobile = mobile;
     }
 
-    void setAddress(String address)
+    public void setAddress(String address)
     {
         this.address = address;
     }
 
-    void setEmail(String email)
+    public void setEmail(String email)
     {
         this.email = email;
     }
 
-    void setNational_id(String national_id)
+    public void setNational_id(String national_id)
     {
         this.national_id = national_id;
     }
 
-    void setDevice_id(int device_id)
+    public void setDevice_id(int device_id)
     {
         this.device_id = device_id;
     }
 
 
-    void setReg_date(String reg_date)       //takes string and stores it as date
+    public void setReg_date(String reg_date)       //takes string and stores it as date
     {
         SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy HH:mm");
 
@@ -114,87 +114,87 @@ public class user {
         this.reg_date = inputDate;
     }
 
-    void setVerified(boolean verified)
+    public void setVerified(boolean verified)
     {
         this.verified = verified;
     }
 
-    void verify()
+    public void verify()
     {
         this.verified = true;
     }
 
 
-    void assignDevice(device d)         //Assign Device ID to this user and copy this user_id to the device
+    public void assignDevice(device d)         //Assign Device ID to this user and copy this user_id to the device
     {
         this.setDevice_id(d.getId());
         d.setUser_id(this.getId());
     }
 
     //getters
-    int getId()
+    public int getId()
     {
         return this.id;
     }
 
-    String getUsername()
+    public String getUsername()
     {
         return this.username;
     }
 
-    String getFirst_name()
+    public String getFirst_name()
     {
         return this.first_name;
     }
 
-    String getLast_name()
+    public String getLast_name()
     {
         return this.last_name;
     }
 
-    String getFullname()
+    public String getFullname()
     {
         return this.first_name + " " + this.last_name;
     }
 
-    String getMobile()
+    public String getMobile()
     {
         return this.mobile;
     }
 
-    String getAddress()
+    public String getAddress()
     {
         return this.address;
     }
 
-    String getEmail()
+    public String getEmail()
     {
         return this.email;
     }
 
-    String getNational_id()
+    public String getNational_id()
     {
         return this.national_id;
     }
 
-    int getDevice_id()
+    public int getDevice_id()
     {
         return this.device_id;
     }
 
-    Date getReg_date()
+    public Date getReg_date()
     {
         return this.reg_date;
     }
 
-    String getRegDateString()       //return reg_Date as a string
+    public String getRegDateString()       //return reg_Date as a string
     {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = fmt.format(this.reg_date);
         return dateString;
     }
 
-    int getVerified()
+    public int getVerified()
     {
         if( this.verified )
             return 1;
@@ -202,7 +202,7 @@ public class user {
             return 0;
     }
 
-    boolean isVerified()
+    public boolean isVerified()
     {
         return this.verified;
     }
