@@ -27,11 +27,11 @@ public class SignIN extends ActionBarActivity {
     private EditText nationalID_in,serialNumber_in;
     private Button register_user;
     private int nationalID,serialNumber;
-    private String db_url = "";
+    private String API_URL = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_login);
 
         nationalID_in = (EditText)findViewById(R.id.national_id);
         serialNumber_in = (EditText)findViewById(R.id.serial_number);
@@ -47,7 +47,7 @@ public class SignIN extends ActionBarActivity {
                     nationalID = Integer.parseInt(s1);
                     //still needs checking for the serial Number
                     serialNumber = Integer.parseInt(s2);
-                    RegisterNewUser();
+                 //   RegisterNewUser();
                     Intent regToMain = new Intent(SignIN.this, MainScreen.class);
                     startActivity(regToMain);
                 }
@@ -64,7 +64,7 @@ public class SignIN extends ActionBarActivity {
             e.printStackTrace();
         }
         // POST Request to send Data to the database
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, db_url,newUser ,new Response.Listener<JSONObject>() {
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL,newUser ,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(SignIN.this, response.toString(), Toast.LENGTH_SHORT).show();
