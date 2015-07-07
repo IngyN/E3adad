@@ -6,51 +6,94 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.aucegypt.ingyn.e3adad.LoginActivity"
-    android:id="@+id/layout">
+    android:theme="@style/teal_material_theme"
+    android:id="@+id/layout"
+    android:background="#ffdbe4e5"
+    android:padding="1dp">
 
     <!-- Login progress -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="National ID"
-        android:id="@+id/national"
-        android:textColor="@color/primarytext"
-        android:textSize="@dimen/abc_text_size_subtitle_material_toolbar"
-        android:layout_marginTop="20dp" />
 
-    <EditText
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned"
-        android:ems="10"
-        android:id="@+id/national_id"
-        android:layout_marginTop="30dp" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="90dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:padding="30dp"
+        android:background="@drawable/custom_edittext">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Serial Number"
-        android:id="@+id/serial"
-        android:layout_marginTop="50dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.PopupWindow">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberPassword"
-        android:ems="10"
-        android:id="@+id/serial_number"
-        android:layout_marginTop="60dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="REGISTER"
+                android:id="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="font_family_body_1_material"
+                android:textColor="#ffaaadb4"
+                android:textStyle="bold" />
 
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="National ID"
+                android:id="@+id/national"
+                android:textColor="@color/primarytext"
+                android:textSize="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/register"
-        android:layout_gravity="center_horizontal" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:inputType="numberSigned"
+                android:ems="10"
+                android:id="@+id/national_id"
+                android:layout_gravity="left"
+                android:background="@drawable/customedit"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serial Number"
+                android:id="@+id/serial"
+                android:textColor="@color/primarytext"
+                android:layout_marginBottom="10dp"
+                android:textSize="16dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:ems="10"
+                android:id="@+id/serial_number"
+                android:inputType="number"
+                android:layout_gravity="center_horizontal|left"
+                android:background="@drawable/customedit"
+                android:layout_marginBottom="30dp" />
+
+            <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" android:visibility="gone" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="confirm"
+                android:id="@+id/register"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/custombutton"
+                android:textColor="@color/text_icons"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
 

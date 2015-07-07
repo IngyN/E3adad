@@ -1,7 +1,8 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,10 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
@@ -23,7 +22,7 @@ import org.json.JSONObject;
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
-public class SignIN extends ActionBarActivity {
+public class SignIN extends Activity {
     private EditText nationalID_in,serialNumber_in;
     private Button register_user;
     private int nationalID,serialNumber;
@@ -32,6 +31,12 @@ public class SignIN extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar bar = this.getActionBar();
+
+        bar.setTitle("E-3adad");
+//        bar.setHomeButtonEnabled(true);
+//        bar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
 
         nationalID_in = (EditText)findViewById(R.id.national_id);
         serialNumber_in = (EditText)findViewById(R.id.serial_number);
@@ -43,7 +48,10 @@ public class SignIN extends ActionBarActivity {
                 String s2 = serialNumber_in.getText().toString();
                 if (s1.length() <= 14) {
                     Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
-                } else {
+                } else if(s2.length()<= 10) {
+                    Toast.makeText(SignIN.this, "Invalid Serial Number", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     nationalID = Integer.parseInt(s1);
                     //still needs checking for the serial Number
                     serialNumber = Integer.parseInt(s2);

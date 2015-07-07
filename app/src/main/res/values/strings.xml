@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E3adad</string>
+    <string name="app_name">E-3adad</string>
 
     <string name="hello_world">Hello world</string>
     <string name="display_reading">Your reading is: </string>
@@ -14,4 +14,5 @@
     <string name="title_activity_sign_in">SignIN</string>
     <string name="title_activity_payment">PaymentActivity</string>
     <string name="title_activity_temporary">Temporary</string>
+    <!--<string name="mainfont" />-->
 </resources>

@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<resources>-->
+    <!--<style name="actionBar" parent= "android:Widget.ActionBar">-->
+        <!--<item name="android:colorPrimary">@color/primary</item>-->
+       <!--&lt;!&ndash;<item name="android:windowBackground">@color/windowBack</item>&ndash;&gt;-->
+        <!--<item name = "android:actionBarSize">70dp</item>-->
+        <!--<item name = "android:displayOptions">useLogo|showHome|showTitle</item>-->
+        <!--<item name ="android:background">@color/primary</item>-->
+        <!--<item name = "android:actionBarItemBackground">@color/primary</item>-->
+    <!--</style>-->
+<!--</resources>-->
 <resources>
-    <style name="actionBar" parent= "android:Widget.ActionBar">
-        <item name="android:colorPrimary">@color/primary</item>
-       <!--<item name="android:windowBackground">@color/windowBack</item>-->
-        <item name = "android:actionBarSize">70dp</item>
-        <item name = "android:displayOptions">useLogo|showHome|showTitle</item>
-        <item name ="android:background">@color/primary</item>
-        <item name = "android:actionBarItemBackground">@color/primary</item>
+    <!-- the theme applied to the application or activity -->
+    <style name="actionBar"
+        parent="android:Widget.DeviceDefault.ActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <!--<item name="android:actionMenuTextColor">@color/darkprimary</item>-->
+        <item name="android:background">@drawable/actionbar_background</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText"
+        parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/darkprimary</item>
+    </style>
+
+    <!-- ActionBar tabs text styles -->
+    <style name="MyActionBarTabText"
+        parent="android:Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/text_icons</item>
     </style>
 </resources>
+

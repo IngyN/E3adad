@@ -51,11 +51,14 @@ public class MainScreen extends Activity {
         ActionBar actionBar = getActionBar();
 
         // Enabling Up / Back navigation
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         actionBar.setIcon(getDrawable(R.drawable.logo));
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setLogo(R.drawable.logo);
+        actionBar.setTitle("E-3adad");
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
+        //actionBar.
 
 
     }
