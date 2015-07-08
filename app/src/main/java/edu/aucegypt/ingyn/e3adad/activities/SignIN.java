@@ -70,11 +70,14 @@ public class SignIN extends Activity {
                 serialNumber = serialNumber_in.getText().toString();
                 email = email_in.getText().toString();
                 if (nationalID.length() != 14) {
-                    Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
-                } else if(serialNumber.length() != 10) {
-                    Toast.makeText(SignIN.this, "Invalid Serial Number", Toast.LENGTH_SHORT).show();
+                    nationalID_in.setError("Wrong Nation ID");
+//                    Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
                 }
-                else {
+                if(serialNumber.length() != 10) {
+                    serialNumber_in.setError("Invalid Serial Number");
+//                    Toast.makeText(SignIN.this, "Invalid Serial Number", Toast.LENGTH_SHORT).show();
+                }
+                if(nationalID.length()==14 && serialNumber.length()==10) {
                     // Maybe we should keep it as a string
                     // the number is too big....
                     RegisterNewUser();

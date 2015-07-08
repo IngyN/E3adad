@@ -1,21 +1,12 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,15 +14,10 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.models.SharedPref;
@@ -67,9 +53,19 @@ public class Camera_scan extends Activity{
     private void getReading(){
         String imageTosend = read_image;
         SharedPref sP = new SharedPref(Camera_scan.this);
-        final submission newSub = new submission(sP.getUser_id(),sP.getDevice_id(),imageTosend);
+        final submission newSub = new submission(SharedPref.getUser_id(), SharedPref.getDevice_id());
 
-        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.POST ,API_URL , null,
+        JSONObject o = new JSONObject();
+        try {
+            o.put("user_id", SharedPref.getUser_id());
+            o.put("device_id", SharedPref.getDevice_id());
+            o.put("imageToSend", imageTosend);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.POST ,API_URL , o,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -85,8 +81,8 @@ public class Camera_scan extends Activity{
                                 put_price.setText(String.valueOf(price));
 
                                 newSub.setReading(String.valueOf(final_reading));
-                                newSub.setPrice(String.valueOf(price));
-                                newSub.setSubmission_id(String.valueOf(submission_id));
+                                newSub.setPrice(price);
+                                newSub.setId(String.valueOf(submission_id));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

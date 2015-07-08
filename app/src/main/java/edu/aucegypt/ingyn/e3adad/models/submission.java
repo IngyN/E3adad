@@ -12,13 +12,13 @@ import java.util.Date;
  */
 public class submission {
 
-    private int id;
+    private String id;
 
-    private int user_id;
-    private int transaction_id;
-    private int device_id;
+    private String user_id;
+    private String transaction_id;
+    private String device_id;
 
-    private int reading;
+    private String reading;
     private double price;
 
     private Date submission_date;
@@ -32,7 +32,7 @@ public class submission {
     //constructors
     public submission() { }
 
-    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, String payment_date, int is_paid)
+    public submission( String id, String user_id, String transaction_id, String device_id, String reading, double price, String submission_date, String payment_date, int is_paid)
     {
         setId(id);
         setUser_id(user_id);
@@ -46,26 +46,32 @@ public class submission {
 
     }
 
+    public submission (String user_id, String device_id)
+    {
+        this.user_id= user_id;
+        this.device_id= device_id;
+    }
+
 
     //setters
-    public void setId(int id)
+    public void setId(String id)
     {
         this.id = id;
     }
 
-    public void setUser_id(int user_id)
+    public void setUser_id(String user_id)
     {
         this.user_id = user_id;
     }
 
-    public void setTransaction_id(int transaction_id)
+    public void setTransaction_id(String transaction_id)
     {
         this.transaction_id = transaction_id;
     }
 
-    public void setDevice_id(int device_id) { this.device_id = device_id; }
+    public void setDevice_id(String device_id) { this.device_id = device_id; }
 
-    public void setReading(int reading) { this.reading = reading; }
+    public void setReading(String reading) { this.reading = reading; }
 
     public void setPrice(double price) { this.price = price; }
 
@@ -107,17 +113,17 @@ public class submission {
 
 
     //getters
-    public int getId()
+    public String getId()
     {
         return this.id;
     }
 
-    public int getUser_id()
+    public String getUser_id()
     {
         return this.user_id;
     }
 
-    public int getTransaction_id()
+    public String getTransaction_id()
     {
         return this.transaction_id;
     }
@@ -128,9 +134,9 @@ public class submission {
         return month;
     }
 
-    public int getDevice_id() { return this.device_id; }
+    public String getDevice_id() { return this.device_id; }
 
-    public int getReading() {return this.reading;}
+    public String getReading() {return this.reading;}
 
     public double getPrice() {return this.price; }
 

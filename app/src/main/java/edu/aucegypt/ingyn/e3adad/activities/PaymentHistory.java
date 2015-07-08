@@ -2,11 +2,9 @@ package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -50,9 +48,7 @@ public class PaymentHistory extends Activity {
         progress.show();
 
 
-        String user_id =SharedPref.getUser_id();;
-
-
+        String user_id =SharedPref.getUser_id();
 
 
         StringBuilder paramsBuilder = new StringBuilder();
@@ -109,7 +105,7 @@ public class PaymentHistory extends Activity {
 
                 submission s = new submission();
 
-                s.setId(obj.getInt("submission_id"));
+                s.setId(String.valueOf(obj.getInt("submission_id")));
                 s.setReading(String.valueOf(obj.getInt("reading")));
                 s.setSubmission_date(String.valueOf(obj.get("submission_date")));
                 s.setIs_paid(obj.getInt("is_paid"));
