@@ -120,6 +120,7 @@ public class PaymentHistory extends Activity {
                 s.setReading(String.valueOf(obj.getInt("reading")));
                 s.setSubmission_date(String.valueOf(obj.get("submission_date")));
                 s.setIs_paid(obj.getInt("is_paid"));
+                s.setPayment_date(obj.getString("submission_date"));
 
 
                 submissionList.add(s);
@@ -129,7 +130,7 @@ public class PaymentHistory extends Activity {
             e.printStackTrace();
         }
 
-        listView = (ListView) findViewById(R.id.list_item);
+        listView = (ListView) findViewById(R.id.listView);
         adapter = new HistoryAdapter(this, submissionList);
 
         listView.setAdapter(adapter);

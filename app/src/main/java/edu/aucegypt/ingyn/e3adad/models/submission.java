@@ -42,6 +42,7 @@ public class submission {
         setPrice(price);
         setSubmission_date(submission_date);
         setIs_paid(is_paid);
+        setPayment_date(payment_date);
 
 
     }
@@ -130,8 +131,11 @@ public class submission {
 
     public String getSubmission_month()
     {
-        String month = String.valueOf(submission_date.getMonth());
-        return month;
+        if (submission_date!=null) {
+            String month = String.valueOf(submission_date.getMonth());
+            return month;
+        }
+        else return null;
     }
 
     public String getDevice_id() { return this.device_id; }
