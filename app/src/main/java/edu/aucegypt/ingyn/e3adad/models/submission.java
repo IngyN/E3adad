@@ -18,7 +18,7 @@ public class submission {
     private int transaction_id;
     private int device_id;
 
-    private int reading;
+    private String reading;
     private double price;
 
     private Date submission_date;
@@ -31,16 +31,16 @@ public class submission {
     //constructors
     public submission() { }
 
-    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, int is_paid)
+    public submission(int user_id,int device_id, String reading)
     {
-        setId(id);
+      //  setId(id);
         setUser_id(user_id);
-        setTransaction_id(transaction_id);
+       // setTransaction_id(transaction_id);
         setDevice_id(device_id);
         setReading(reading);
-        setPrice(price);
-        setSubmission_date(submission_date);
-        setIs_paid(is_paid);
+      //  setPrice(price);
+       // setSubmission_date(submission_date);
+       // setIs_paid(is_paid);
 
     }
 
@@ -63,7 +63,7 @@ public class submission {
 
     public void setDevice_id(int device_id) { this.device_id = device_id; }
 
-    public void setReading(int reading) { this.reading = reading; }
+    public void setReading(String reading) { this.reading = reading; }
 
     public void setPrice(double price) { this.price = price; }
 
@@ -111,7 +111,7 @@ public class submission {
 
     public int getDevice_id() { return this.device_id; }
 
-    public int getReading() {return this.reading;}
+    public String getReading() {return this.reading;}
 
     public double getPrice() {return this.price; }
 
@@ -136,14 +136,14 @@ public class submission {
 
         try{
 
-            obj.put("id", this.getId());
+       //     obj.put("id", this.getId());
             obj.put("user_id", this.getUser_id());
-            obj.put("transaction_id", this.getTransaction_id());
+       //     obj.put("transaction_id", this.getTransaction_id());
             obj.put("device_id", this.getDevice_id());
             obj.put("reading", this.getReading());
-            obj.put("price", this.getPrice());
-            obj.put("submission_date", this.getSubmission_dateString());
-            obj.put("is_paid", this.getIs_paidInt());
+       //     obj.put("price", this.getPrice());
+        //    obj.put("submission_date", this.getSubmission_dateString());
+         //   obj.put("is_paid", this.getIs_paidInt());
 
         }catch (JSONException e){
             e.printStackTrace();
