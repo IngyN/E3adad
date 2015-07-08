@@ -46,7 +46,7 @@ public class Camera_scan extends Activity{
 
         ActionBar bar = this.getActionBar();
         bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
-
+        bar.setTitle("Confirm");
         Window w = getWindow();
         w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
         w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
