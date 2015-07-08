@@ -31,7 +31,7 @@ public class submission {
     //constructors
     public submission() { }
 
-    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, boolean is_paid)
+    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, int is_paid)
     {
         setId(id);
         setUser_id(user_id);

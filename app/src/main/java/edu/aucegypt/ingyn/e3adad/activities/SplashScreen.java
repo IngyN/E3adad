@@ -20,13 +20,15 @@ import edu.aucegypt.ingyn.e3adad.R;
  * @see SystemUiHider
  */
 public class SplashScreen extends Activity {
-
+    public static Activity Splash;
+    static boolean active = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_fullscreen);
 
+        Splash = this;
+        active = true;
         Thread t=new Thread()
         {
             public void run()

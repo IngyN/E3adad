@@ -32,6 +32,15 @@ public class MainScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(SignIN.active){
+            SignIN.active = false;
+            SignIN.SIGNIN.finish();
+        }
+        if(SplashScreen.active){
+            SplashScreen.active = false;
+            SplashScreen.Splash.finish();
+        }
+
         Calendar calendar = Calendar.getInstance();
         final int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
       //  Context context = getActivity();
@@ -103,11 +112,11 @@ public class MainScreen extends Activity {
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK) {
-         //   Bitmap photo = (Bitmap) data.getExtras().get("data");
-            performCrop(data.getData());
-          /*  Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+        //    performCrop(data.getData());
+            Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
             mainToCam.putExtra("Reading", photo);
-            startActivity(mainToCam);*/
+            startActivity(mainToCam);
         }
 
        else if(requestCode == PIC_CROP){

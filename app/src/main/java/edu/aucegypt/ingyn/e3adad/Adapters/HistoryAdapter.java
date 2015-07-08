@@ -52,7 +52,7 @@ public class HistoryAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-
+/*
 
         TextView reading = (TextView) convertView.findViewById(R.id.amount);
         TextView price = (TextView) convertView.findViewById(R.id.price);
@@ -81,7 +81,7 @@ public class HistoryAdapter extends BaseAdapter {
         if(s.getIs_paid() == true)
             is_paid.setText("Paid");
         else is_paid.setText("Not paid yet");
-
+*/
         return convertView;
     }
 

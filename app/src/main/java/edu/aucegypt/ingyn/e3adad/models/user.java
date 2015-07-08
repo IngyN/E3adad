@@ -45,6 +45,7 @@ public class user {
        // setAddress(address);
         setEmail(email);
         setNational_id(national_id);
+        setSerial_number(serial_number);
      //   setDevice_id(device_id);
        // setReg_date(reg_date);
         //setVerified(verified);
@@ -89,6 +90,11 @@ public class user {
     public void setNational_id(String national_id)
     {
         this.national_id = national_id;
+    }
+
+    public void setSerial_number(String serial_number)
+    {
+        this.serial_number = serial_number;
     }
 
     public void setDevice_id(int device_id)
@@ -180,6 +186,11 @@ public class user {
         return this.device_id;
     }
 
+    public String getSerial_number()
+    {
+        return this.serial_number;
+    }
+
     public Date getReg_date()
     {
         return this.reg_date;
@@ -219,7 +230,7 @@ public class user {
             obj.put("address", this.getAddress()); */
             obj.put("email", this.getEmail());
             obj.put("national_id", this.getNational_id());
-            obj.put("device_id", this.getDevice_id());
+            obj.put("serial_number", this.getDevice_id());
 //            obj.put("reg_date", this.getRegDateString());
 //            obj.put("verified", this.getVerified());
 
