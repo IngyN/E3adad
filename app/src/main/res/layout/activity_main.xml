@@ -102,5 +102,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/estimate"
         android:layout_alignBottom="@+id/estimation"
-        android:layout_toEndOf="@+id/take_photo" />
+        android:layout_toEndOf="@+id/take_photo"
+        android:textColor="@color/background_material_dark" />
 </RelativeLayout>

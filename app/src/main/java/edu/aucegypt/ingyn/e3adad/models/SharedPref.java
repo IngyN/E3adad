@@ -11,6 +11,10 @@ public class SharedPref {
     static String device_id;
     static Context context;
     static String last_estimation;
+    static String last_update;
+
+    static SharedPreferences user_data;
+    static SharedPreferences.Editor editor ;
 
     public SharedPref (Context context)
     {
@@ -30,18 +34,16 @@ public class SharedPref {
         editor = user_data.edit();
     }
 
-    static SharedPreferences user_data;
-    static SharedPreferences.Editor editor ;
-
      public void saveData(){
         editor.putString("user_id", user_id);
         editor.commit();
         editor.putString("device_id", device_id);
         editor.commit();
-         editor.putString("last_estimation", last_estimation);
-         editor.commit();
     }
-
+    public void saveEstimate(){
+        editor.putString("last_estimation", last_estimation);
+        editor.commit();
+    }
     static public String getUser_id(){
         if (user_data.contains("user_id")) {
             user_id = user_data.getString("user_id", null);

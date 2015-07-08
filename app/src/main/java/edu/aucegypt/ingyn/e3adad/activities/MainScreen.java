@@ -42,7 +42,11 @@ public class MainScreen extends Activity {
         SharedPref shpr = new SharedPref(this);
 
         estimate = (TextView) findViewById(R.id.estimate);
-        estimate.setText(shpr.getLast_estimation());
+        if(shpr.getLast_estimation()==0){
+            estimate.setText("= 0");
+        }else{
+            estimate.setText("= "+shpr.getLast_estimation());
+        }
 
         if(SignIN.active){
             SignIN.active = false;

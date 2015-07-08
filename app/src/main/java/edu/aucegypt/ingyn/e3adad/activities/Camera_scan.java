@@ -98,7 +98,7 @@ public class Camera_scan extends Activity{
                                 newSub.setSubmission_date(submission_date);
 
                                 SharedPref sp = new SharedPref(Camera_scan.this, String.valueOf(final_reading));
-                                sp.saveData();
+                                sp.saveEstimate();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
