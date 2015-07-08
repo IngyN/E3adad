@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,7 +84,7 @@ public class PaymentHistory extends Activity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 progress.dismiss();
-                Toast.makeText(search.this, "Network error: " + error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(PaymentHistory.this, "Network error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -105,7 +110,7 @@ public class PaymentHistory extends Activity {
                 submission s = new submission();
 
                 s.setId(obj.getInt("submission_id"));
-                s.setReading(obj.getInt("reading"));
+                s.setReading(String.valueOf(obj.getInt("reading")));
                 s.setSubmission_date(String.valueOf(obj.get("submission_date")));
                 s.setIs_paid(obj.getInt("is_paid"));
 
@@ -117,7 +122,7 @@ public class PaymentHistory extends Activity {
             e.printStackTrace();
         }
 
-        listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list_item);
         adapter = new HistoryAdapter(this, submissionList);
 
         listView.setAdapter(adapter);
