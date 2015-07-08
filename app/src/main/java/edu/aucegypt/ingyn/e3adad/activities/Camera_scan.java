@@ -69,7 +69,7 @@ public class Camera_scan extends Activity{
         try {
             o.put("user_id", SharedPref.getUser_id());
             o.put("device_id", SharedPref.getDevice_id());
-            o.put("imageToSend", imageTosend);
+            o.put("photo", imageTosend);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -83,6 +83,7 @@ public class Camera_scan extends Activity{
                             Toast.makeText(Camera_scan.this, "Error: " + response.optString("error", ""), Toast.LENGTH_SHORT).show();
                         }else{
                             try {
+                                Toast.makeText(Camera_scan.this, "Sent", Toast.LENGTH_SHORT).show();
                                 final_reading = response.getInt("reading");
                                 price = response.getDouble("price");
                                 submission_id = response.getInt("submission_id");
