@@ -1,15 +1,12 @@
 package edu.aucegypt.ingyn.e3adad.models;
 
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Home on 7/7/15.
@@ -25,7 +22,7 @@ public class user {
     private String address;
     private String email;
     private String national_id;
-
+    private String serial_number;
     private int device_id;
 
     private Date reg_date;
@@ -36,20 +33,21 @@ public class user {
     //constructors
     public user() { }
 
-    public user( int id, String username, String first_name, String last_name,  String mobile, String address,
-                    String email, String national_id, int device_id, String reg_date, boolean verified)
-    {
-        setId(id);
-        setUsername(username);
-        setFirst_name(first_name);
-        setLast_name(last_name);
-        setMobile(mobile);
-        setAddress(address);
+//    public user( int id, String username, String first_name, String last_name,  String mobile, String address,
+//                    String email, String national_id, int device_id, String reg_date, boolean verified)
+//    {
+    public user(String serial_number,String national_id, String email){
+     //   setId(id);
+       // setUsername(username);
+        //setFirst_name(first_name);
+        //setLast_name(last_name);
+       // setMobile(mobile);
+       // setAddress(address);
         setEmail(email);
         setNational_id(national_id);
-        setDevice_id(device_id);
-        setReg_date(reg_date);
-        setVerified(verified);
+     //   setDevice_id(device_id);
+       // setReg_date(reg_date);
+        //setVerified(verified);
     }
 
     //setters
@@ -208,22 +206,22 @@ public class user {
     }
 
     // JSON conversion
-    JSONObject toJSON (){
+    public JSONObject toJSON (){
         JSONObject obj = new JSONObject();
 
         try{
             
-            obj.put("id", this.getId());
+       /*     obj.put("id", this.getId());
             obj.put("username", this.getUsername());
             obj.put("first_name", this.getFirst_name());
             obj.put("last_name", this.getLast_name());
             obj.put("mobile", this.getMobile());
-            obj.put("address", this.getAddress());
+            obj.put("address", this.getAddress()); */
             obj.put("email", this.getEmail());
             obj.put("national_id", this.getNational_id());
             obj.put("device_id", this.getDevice_id());
-            obj.put("reg_date", this.getRegDateString());
-            obj.put("verified", this.getVerified());
+//            obj.put("reg_date", this.getRegDateString());
+//            obj.put("verified", this.getVerified());
 
         }catch (JSONException e){
             e.printStackTrace();

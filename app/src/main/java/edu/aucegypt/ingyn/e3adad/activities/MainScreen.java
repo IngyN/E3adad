@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -20,7 +21,8 @@ import edu.aucegypt.ingyn.e3adad.R;
 
 
 public class MainScreen extends Activity {
-    private ImageButton take_photo,payment,statistics;
+    private ImageButton take_photo;
+    private ImageView payment,statistics;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
     final int startDay = 20, endDay = 31;
@@ -47,6 +49,27 @@ public class MainScreen extends Activity {
                 TakePhoto(v);
             }
         });
+        payment = (ImageView) findViewById(R.id.pay);
+        payment.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent mainToPay = new Intent(MainScreen.this, PaymentHistory.class);
+                startActivity(mainToPay);
+            }
+
+        });
+        statistics = (ImageView) findViewById(R.id.stat);
+        statistics.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent mainToStat = new Intent(MainScreen.this, Statistics.class);
+                startActivity(mainToStat);
+            }
+
+        });
+
         // get action bar
         ActionBar actionBar = getActionBar();
 

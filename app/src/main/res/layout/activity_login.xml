@@ -84,7 +84,26 @@
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp" android:visibility="gone" />
 
-            <Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email address"
+            android:id="@+id/emailText"
+            android:textColor="@color/primarytext"
+            android:layout_marginBottom="10dp"
+            android:textSize="16dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:ems="10"
+            android:id="@+id/email"
+            android:inputType="number"
+            android:layout_gravity="center_horizontal|left"
+            android:background="@drawable/customedit"
+            android:layout_marginBottom="30dp" />
+
+        <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="confirm"
@@ -94,7 +113,7 @@
                 android:textColor="@color/text_icons"
                 android:textSize="17dp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <Space
         android:layout_width="match_parent"

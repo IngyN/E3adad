@@ -1,12 +1,6 @@
 package edu.aucegypt.ingyn.e3adad.Adapters;
 
 
-import edu.aucegypt.ingyn.e3adad.R;
-import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
-import edu.aucegypt.ingyn.e3adad.models.submission;
-
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import java.util.List;
+
+import edu.aucegypt.ingyn.e3adad.R;
+import edu.aucegypt.ingyn.e3adad.models.submission;
 
 
 public class HistoryAdapter extends BaseAdapter {
@@ -55,16 +54,16 @@ public class HistoryAdapter extends BaseAdapter {
 
 
 
-        TextView reading = (TextView) convertView.findViewById(R.id.email);
-        TextView price = (TextView) convertView.findViewById(R.id.phone);
-        TextView submission_date = (TextView) convertView.findViewById(R.id.verified);
+        TextView reading = (TextView) convertView.findViewById(R.id.amount);
+        TextView price = (TextView) convertView.findViewById(R.id.price);
+        TextView submission_date = (TextView) convertView.findViewById(R.id.recorded);
 
         //TODO use an image or a circle shape and change color value
-        TextView is_paid = (TextView) convertView.findViewById(R.id.is_paid);
-
 
         // getting contact data for the row
         submission s = SubmissionList.get(position);
+
+
 
         // Reading
         reading.setText(String.valueOf(s.getReading()));

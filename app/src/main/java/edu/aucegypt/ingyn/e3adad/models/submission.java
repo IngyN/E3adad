@@ -23,7 +23,10 @@ public class submission {
 
     private Date submission_date;
 
-    private boolean is_paid;
+    private int is_paid;
+    // 0=> not paid
+    //1=> pending
+    //2=> paid
 
     //constructors
     public submission() { }
@@ -79,7 +82,7 @@ public class submission {
         this.submission_date = inputDate;
     }
 
-    public void setIs_paid(boolean is_paid)
+    public void setIs_paid(int is_paid)
     {
         this.is_paid = is_paid;
     }
@@ -120,14 +123,11 @@ public class submission {
         return dateString;
     }
 
-    public boolean getIs_paid() { return this.is_paid;}
+    public int getIs_paid() { return this.is_paid;}
 
     public int getIs_paidInt()
     {
-        if( this.is_paid )
-            return 1;
-        else
-            return 0;
+        return is_paid;
     }
 
     // JSON conversion
@@ -151,5 +151,19 @@ public class submission {
         }
 
         return obj;
+    }
+
+    // 0=> not paid
+    //1=> pending
+    //2=> paid
+
+    public boolean isPaid (){
+
+        return (is_paid==2);
+    }
+
+    public boolean isPending (){
+
+        return (is_paid==1);
     }
 }
