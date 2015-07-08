@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,6 +80,12 @@ public class Camera_scan extends Activity{
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+               /*         JSONArray errors = null;
+                        try {
+                            errors = response.getJSONArray("failed");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }*/
                         if(response.has("failed")) {
                             Toast.makeText(Camera_scan.this, "Error: " + response.optString("error", ""), Toast.LENGTH_SHORT).show();
                         }else{
