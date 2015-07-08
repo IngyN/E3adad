@@ -18,7 +18,8 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
+
         android:theme="@style/teal_material_theme" >
         <activity
             android:name=".activities.MainScreen"
@@ -31,8 +32,13 @@
         <activity
             android:name=".activities.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
+            android:label="E-3adad"
             android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.Statistics"
@@ -45,11 +51,7 @@
         <activity
             android:name=".activities.SignIN"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.PaymentActivity"

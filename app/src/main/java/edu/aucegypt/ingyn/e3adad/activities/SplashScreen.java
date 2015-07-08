@@ -1,17 +1,12 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
-import edu.aucegypt.ingyn.e3adad.activities.util.SystemUiHider;
-
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
 
 import edu.aucegypt.ingyn.e3adad.R;
+import edu.aucegypt.ingyn.e3adad.activities.util.SystemUiHider;
+import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -22,10 +17,13 @@ import edu.aucegypt.ingyn.e3adad.R;
 public class SplashScreen extends Activity {
     public static Activity Splash;
     static boolean active = false;
+    public String device_id;
+    public String  user_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
+        SharedPref p = new SharedPref(this);
 
         Splash = this;
         active = true;
@@ -34,9 +32,18 @@ public class SplashScreen extends Activity {
             public void run()
             {
                 try {
+                    device_id=SharedPref.getDevice_id();
+                    user_id= SharedPref.getUser_id();
                     sleep(3000);
-                    finish();
-                    Intent cv=new Intent(SplashScreen.this, SignIN.class);
+                    //finish();
+                    Intent cv;
+                    if(device_id==null|| user_id==null) {
+                        cv = new Intent(SplashScreen.this, SignIN.class);
+
+                    }
+                    else {
+                        cv = new Intent (SplashScreen.this, MainScreen.class);
+                    }
                     startActivity(cv);
                 }
 

@@ -33,7 +33,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
-import edu.aucegypt.ingyn.e3adad.models.submission;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class Camera_scan extends ActionBarActivity {
@@ -66,10 +65,16 @@ public class Camera_scan extends ActionBarActivity {
         return true;
     }
     private void getReading(){
-        String imageToSend = encodeTobase64(read_image);
-      //  submission newSub = new submission(,,imageToSend);
-        //int user_id,int device_id, String reading)
-
+        String imageTosend = encodeTobase64(read_image);
+        JSONObject imageObject = new JSONObject();
+        /*
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();*/
+        try {
+            imageObject.put("image",imageTosend);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.GET,API_URL , null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -79,7 +84,6 @@ public class Camera_scan extends ActionBarActivity {
                         }else{
                             try {
                                 final_reading = response.getInt("value");
-                                put_value.setText(final_reading);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -98,7 +102,7 @@ public class Camera_scan extends ActionBarActivity {
     {
         Bitmap imagex=image;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imagex.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        imagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
 
