@@ -108,22 +108,24 @@ public class PaymentHistory extends Activity {
 
             JSONArray arr =  response.getJSONArray("results");
 
-            if(arr.length() == 0)
+            if(arr.length() == 0){
                 Toast.makeText(PaymentHistory.this, "No submissions found.", Toast.LENGTH_LONG).show();
+            }
+            else {
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject obj = arr.getJSONObject(i);
 
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject obj = arr.getJSONObject(i);
+                    submission s = new submission();
 
-                submission s = new submission();
-
-                s.setId(String.valueOf(obj.getInt("submission_id")));
-                s.setReading(String.valueOf(obj.getInt("reading")));
-                s.setSubmission_date(String.valueOf(obj.get("submission_date")));
-                s.setIs_paid(obj.getInt("is_paid"));
+                    s.setId(String.valueOf(obj.getInt("submission_id")));
+                    s.setReading(String.valueOf(obj.getInt("reading")));
+                    s.setSubmission_date(String.valueOf(obj.get("submission_date")));
+                    s.setIs_paid(obj.getInt("is_paid"));
 
 
-                submissionList.add(s);
+                    submissionList.add(s);
 
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
