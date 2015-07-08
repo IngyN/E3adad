@@ -27,7 +27,7 @@ public class MainScreen extends Activity {
     private ImageView payment,statistics;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
-    final int startDay = 20, endDay = 31;
+  //  final int startDay = 20, endDay = 31;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class MainScreen extends Activity {
         });
 
         // get action bar
-        ActionBar actionBar = getActionBar();
+ /*       ActionBar actionBar = getActionBar();
 
         // Enabling Up / Back navigation
         actionBar.setHomeButtonEnabled(true);
@@ -93,6 +93,7 @@ public class MainScreen extends Activity {
         actionBar.setTitle("E-3adad");
         actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
         //actionBar.
+        */
 
 
     }

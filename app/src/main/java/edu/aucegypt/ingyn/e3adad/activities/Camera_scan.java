@@ -1,5 +1,6 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +38,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 import edu.aucegypt.ingyn.e3adad.models.submission;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
-public class Camera_scan extends ActionBarActivity {
+public class Camera_scan extends Activity{
     private String read_image;
     private TextView put_value,put_price;
     private int final_reading, submission_id;

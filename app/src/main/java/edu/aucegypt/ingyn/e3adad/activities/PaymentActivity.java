@@ -1,5 +1,7 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.Activity;
+import android.app.Notification;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,7 +9,7 @@ import android.view.MenuItem;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
-public class PaymentActivity extends ActionBarActivity {
+public class PaymentActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

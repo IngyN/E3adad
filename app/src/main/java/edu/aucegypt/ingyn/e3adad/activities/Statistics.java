@@ -1,5 +1,6 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,7 +8,7 @@ import android.view.MenuItem;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
-public class Statistics extends ActionBarActivity {
+public class Statistics extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
