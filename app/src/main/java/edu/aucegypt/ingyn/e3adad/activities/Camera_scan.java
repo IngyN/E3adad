@@ -1,5 +1,6 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,14 @@ public class Camera_scan extends Activity{
         imageView.setImageBitmap(decodeBase64(read_image));
         put_value = (TextView) findViewById(R.id.tvRead);
         put_price = (TextView) findViewById(R.id.tvPrice);
+
+        ActionBar bar = this.getActionBar();
+        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
+
+        Window w = getWindow();
+        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
+
         getReading();
     }
 
@@ -76,6 +86,7 @@ public class Camera_scan extends Activity{
                                 final_reading = response.getInt("reading");
                                 price = response.getDouble("price");
                                 submission_id = response.getInt("submission_id");
+                                String submission_date = response.getString("submission_date");
 
                                 put_value.setText(String.valueOf(final_reading));
                                 put_price.setText(String.valueOf(price));
@@ -83,6 +94,8 @@ public class Camera_scan extends Activity{
                                 newSub.setReading(String.valueOf(final_reading));
                                 newSub.setPrice(price);
                                 newSub.setId(String.valueOf(submission_id));
+                                newSub.setSubmission_date(submission_date);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

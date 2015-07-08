@@ -9,9 +9,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -82,18 +84,22 @@ public class MainScreen extends Activity {
         });
 
         // get action bar
- /*       ActionBar actionBar = getActionBar();
+       ActionBar actionBar = getActionBar();
 
         // Enabling Up / Back navigation
         actionBar.setHomeButtonEnabled(true);
 
-        actionBar.setIcon(getDrawable(R.drawable.logo));
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setLogo(R.drawable.logo);
         actionBar.setTitle("E-3adad");
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
+
+        actionBar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
+
+        Window w = getWindow();
+        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
+
+
         //actionBar.
-        */
+
 
 
     }
@@ -106,6 +112,7 @@ public class MainScreen extends Activity {
         }
         try{
             Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            Log.d("StartingCam!", "1");
             startActivityForResult(cameraIntent, REQUEST_PHOTO);
         } catch(ActivityNotFoundException anfe){
             String errorMessage = "Oops..Your device doesn't support capturing images!";
@@ -113,7 +120,9 @@ public class MainScreen extends Activity {
             toast.show();
         }
     }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("Returning from Cam", "hello");
         if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
         //    performCrop(data.getData());
