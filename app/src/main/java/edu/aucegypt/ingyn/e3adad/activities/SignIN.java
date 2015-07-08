@@ -2,17 +2,15 @@ package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Space;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,17 +22,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aucegypt.ingyn.e3adad.R;
-import edu.aucegypt.ingyn.e3adad.models.user;
+import edu.aucegypt.ingyn.e3adad.models.SharedPref;
+import edu.aucegypt.ingyn.e3adad.models.User;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class SignIN extends Activity {
     private EditText nationalID_in,serialNumber_in,email_in;
     private Button register_user;
     private String nationalID,serialNumber,email;
-    private String API_URL = "";
-    private int user_id,device_id;
+    private String API_URL = "http://baseetta.com/hatem/e3adad/register.php";
+    private String user_id,device_id;
     public static Activity SIGNIN;
     static boolean active = false;
+    User newUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +52,8 @@ public class SignIN extends Activity {
         bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
 
         Window w = getWindow();
-        w.setStatusBarColor(getResources().getColor(R.color.darkprimary));
-        w.setNavigationBarColor(getResources().getColor(R.color.darkprimary));
+        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
 
 //        bar.setHomeButtonEnabled(true);
 //        bar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
@@ -78,9 +78,9 @@ public class SignIN extends Activity {
                     // Maybe we should keep it as a string
                     // the number is too big....
 
-                 //   RegisterNewUser();
-                    Intent regToMain = new Intent(SignIN.this, MainScreen.class);
-                    startActivity(regToMain);
+                    RegisterNewUser();
+
+
                 }
             }
         });
@@ -88,18 +88,29 @@ public class SignIN extends Activity {
     }
     private void RegisterNewUser(){
 
-        user newUser = new user(email,nationalID,serialNumber);
+       newUser = new User(serialNumber,nationalID,email);
 
         // POST Request to send Data to the database
-        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL,newUser.toJSON() ,new Response.Listener<JSONObject>() {
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL, newUser.toJSON() ,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(SignIN.this, response.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("Volley response Sign In", response.toString());
                 try {
-                    user_id = response.getInt("user_id");
-                    device_id = response.getInt("device_id");
+                    user_id =String.valueOf(response.getInt("user_id"));
+                    device_id = String.valueOf(response.getInt("device_id"));
+
+                    newUser.setDevice_id(device_id);
+                    newUser.setId(user_id);
+                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id);
+                    s.saveData();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+
+                if(!(response.has("ERROR"))) {
+                    Intent regToMain = new Intent(SignIN.this, MainScreen.class);
+                    startActivity(regToMain);
                 }
             }
         }, new Response.ErrorListener() {
@@ -112,17 +123,7 @@ public class SignIN extends Activity {
 
         QueueSingleton.getInstance(this).addToRequestQueue(postRequest);
     }
-    private void SaveToSharedPreferences(){
-        SharedPreferences.Editor editor = getSharedPreferences("user_data", Context.MODE_PRIVATE).edit();
-        editor.putInt("user_id", user_id);
-        editor.putInt("device_id", device_id);
-        editor.apply();
-    }
-    private void GetFromSharedPreferences(int user,int device){
-        SharedPreferences user_data = getSharedPreferences("user_data", MODE_PRIVATE);
-        user = user_data.getInt("user_id",0);
-        device = user_data.getInt("device_id",0);
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

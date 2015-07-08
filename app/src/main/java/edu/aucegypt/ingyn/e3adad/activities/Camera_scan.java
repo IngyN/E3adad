@@ -1,20 +1,11 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,15 +13,12 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
@@ -39,7 +27,7 @@ public class Camera_scan extends ActionBarActivity {
     private Bitmap read_image;
     private TextView put_value;
     private int final_reading = 0;
-    final private String API_URL = "";
+    final private String API_URL = "http://baseetta.com/hatem/e3adad/submit.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +63,7 @@ public class Camera_scan extends ActionBarActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.GET,API_URL , null,
+        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.POST,API_URL , null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
