@@ -22,6 +22,7 @@ public class submission {
     private double price;
 
     private Date submission_date;
+    private Date payment_date;
 
     private int is_paid;
     // 0=> not paid
@@ -31,7 +32,7 @@ public class submission {
     //constructors
     public submission() { }
 
-    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, int is_paid)
+    public submission( int id, int user_id, int transaction_id, int device_id, int reading, double price, String submission_date, String payment_date, int is_paid)
     {
         setId(id);
         setUser_id(user_id);
@@ -41,6 +42,7 @@ public class submission {
         setPrice(price);
         setSubmission_date(submission_date);
         setIs_paid(is_paid);
+
 
     }
 
@@ -82,6 +84,22 @@ public class submission {
         this.submission_date = inputDate;
     }
 
+    public void setPayment_date(String payment_date)       //takes string and stores it as date
+    {
+        SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+
+        Date inputDate = new Date();
+        try {
+            inputDate = fmt.parse(payment_date);
+        }catch (ParseException e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        this.payment_date = inputDate;
+    }
+
+
     public void setIs_paid(int is_paid)
     {
         this.is_paid = is_paid;
@@ -104,9 +122,10 @@ public class submission {
         return this.transaction_id;
     }
 
-    public Date getSubmission_date()
+    public String getSubmission_month()
     {
-        return this.submission_date;
+        String month = String.valueOf(submission_date.getMonth());
+        return month;
     }
 
     public int getDevice_id() { return this.device_id; }
@@ -120,6 +139,13 @@ public class submission {
     {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = fmt.format(this.submission_date);
+        return dateString;
+    }
+
+    public String getPayment_dateString()       //return reg_Date as a string
+    {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = fmt.format(this.payment_date);
         return dateString;
     }
 
@@ -144,6 +170,7 @@ public class submission {
             obj.put("price", this.getPrice());
             obj.put("submission_date", this.getSubmission_dateString());
             obj.put("is_paid", this.getIs_paidInt());
+            obj.put("payment_date", this.getPayment_dateString());
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -165,5 +192,10 @@ public class submission {
     public boolean isPending (){
 
         return (is_paid==1);
+    }
+
+    public boolean isLate ()
+    {
+        return  (is_paid==0);
     }
 }

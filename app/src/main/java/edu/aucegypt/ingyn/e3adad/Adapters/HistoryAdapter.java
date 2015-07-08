@@ -3,6 +3,8 @@ package edu.aucegypt.ingyn.e3adad.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +21,6 @@ public class HistoryAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<submission> SubmissionList;
-
-
 
 
     public HistoryAdapter(Activity activity, List<submission> SubmissionList) {
@@ -52,36 +52,41 @@ public class HistoryAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-/*
-
-        TextView reading = (TextView) convertView.findViewById(R.id.amount);
-        TextView price = (TextView) convertView.findViewById(R.id.price);
+        Drawable status = convertView.getResources().getDrawable(R.drawable.status_button);
+        TextView payment_date = (TextView) convertView.findViewById(R.id.paid);
+        TextView price = (TextView) convertView.findViewById(R.id.amount);
         TextView submission_date = (TextView) convertView.findViewById(R.id.recorded);
+        TextView month = (TextView) convertView.findViewById(R.id.month);
 
-        //TODO use an image or a circle shape and change color value
 
         // getting contact data for the row
         submission s = SubmissionList.get(position);
 
-
-
         // Reading
-        reading.setText(String.valueOf(s.getReading()));
+        price.setText(String.valueOf(s.getReading()));
 
-        // Price
-        if(s.getPrice() > 0)
-        price.setText(String.valueOf(s.getPrice()));
-        else
-        price.setText("Pending");
-
+        // Payment Status
+        if(s.isPending())
+        {
+            status.setColorFilter(R.color.pending, PorterDuff.Mode.MULTIPLY);
+        }
+        else if(s.isPaid())
+        {
+            status.setColorFilter(R.color.paid, PorterDuff.Mode.MULTIPLY);
+        }
+        else if (s.isLate())
+        {
+            status.setColorFilter(R.color.late, PorterDuff.Mode.MULTIPLY);
+        }
         // Date
         submission_date.setText(s.getSubmission_dateString());
 
-        // Payment Status
-        if(s.getIs_paid() == true)
-            is_paid.setText("Paid");
-        else is_paid.setText("Not paid yet");
-*/
+       // month
+
+        month.setText(s.getSubmission_month());
+
+        payment_date.setText(s.getPayment_dateString());
+
         return convertView;
     }
 

@@ -7,4 +7,10 @@
     tools:context="edu.aucegypt.ingyn.e3adad.activities.PaymentHistory"
     >
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
