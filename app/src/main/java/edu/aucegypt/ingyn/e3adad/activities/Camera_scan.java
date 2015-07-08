@@ -1,11 +1,20 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,37 +22,39 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
+import edu.aucegypt.ingyn.e3adad.models.SharedPref;
+import edu.aucegypt.ingyn.e3adad.models.submission;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class Camera_scan extends ActionBarActivity {
-    private Bitmap read_image;
-    private TextView put_value;
-    private int final_reading = 0;
+    private String read_image;
+    private TextView put_value,put_price;
+    private int final_reading, submission_id;
+    private double price;
     final private String API_URL = "http://baseetta.com/hatem/e3adad/submit.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_scan);
 
-        read_image = (Bitmap) getIntent().getExtras().get("Reading");
+        read_image = getIntent().getExtras().getString("Reading");
         ImageView imageView;
         imageView = (ImageView) findViewById(R.id.photo);
-        imageView.setImageBitmap(read_image);
+        imageView.setImageBitmap(decodeBase64(read_image));
         put_value = (TextView) findViewById(R.id.tvRead);
-        // not sure about this
-    /*    getReading();
-        if(final_reading!=0){
-            put_value.setText(final_reading);
-        }*/
-//captured picture uri
+        put_price = (TextView) findViewById(R.id.tvPrice);
+        getReading();
     }
 
     @Override
@@ -53,17 +64,11 @@ public class Camera_scan extends ActionBarActivity {
         return true;
     }
     private void getReading(){
-        String imageTosend = encodeTobase64(read_image);
-        JSONObject imageObject = new JSONObject();
-        /*
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();*/
-        try {
-            imageObject.put("image",imageTosend);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.POST,API_URL , null,
+        String imageTosend = read_image;
+        SharedPref sP = new SharedPref(Camera_scan.this);
+        final submission newSub = new submission(sP.getUser_id(),sP.getDevice_id(),imageTosend);
+
+        JsonObjectRequest request_reading = new JsonObjectRequest(Request.Method.POST ,API_URL , null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -71,7 +76,16 @@ public class Camera_scan extends ActionBarActivity {
                             Toast.makeText(Camera_scan.this, "Error: " + response.optString("error", ""), Toast.LENGTH_SHORT).show();
                         }else{
                             try {
-                                final_reading = response.getInt("value");
+                                final_reading = response.getInt("reading");
+                                price = response.getDouble("price");
+                                submission_id = response.getInt("submission_id");
+
+                                put_value.setText(String.valueOf(final_reading));
+                                put_price.setText(String.valueOf(price));
+
+                                newSub.setReading(String.valueOf(final_reading));
+                                newSub.setPrice(String.valueOf(price));
+                                newSub.setSubmission_id(String.valueOf(submission_id));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -86,21 +100,12 @@ public class Camera_scan extends ActionBarActivity {
         });
         QueueSingleton.getInstance(this).addToRequestQueue(request_reading);
     }
-    private static String encodeTobase64(Bitmap image)
-    {
-        Bitmap imagex=image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
 
-        return imageEncoded;
-    }
-   /* private static Bitmap decodeBase64(String input)
+    private static Bitmap decodeBase64(String input)
     {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

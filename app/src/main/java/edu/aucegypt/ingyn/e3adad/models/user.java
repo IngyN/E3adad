@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Home on 7/7/15.
  */
-public class User {
+public class user {
 
     static private String id;
 
@@ -31,12 +31,12 @@ public class User {
 
 
     //constructors
-    public User() { }
+    public user() { }
 
 //    public user( int id, String username, String first_name, String last_name,  String mobile, String address,
 //                    String email, String national_id, int device_id, String reg_date, boolean verified)
 //    {
-    public User(String serial_number,String national_id, String email){
+    public user(String serial_number,String national_id, String email){
      //   setId(id);
        // setUsername(username);
         //setFirst_name(first_name);
@@ -54,7 +54,7 @@ public class User {
     //setters
     public void setId(String id)
     {
-        User.id = id;
+        user.id = id;
     }
 
 //    public void setUsername(String username)
@@ -64,42 +64,42 @@ public class User {
 
     public void setFirst_name(String first_name)
     {
-        User.first_name = first_name;
+        user.first_name = first_name;
     }
 
     public void setLast_name(String last_name)
     {
-        User.last_name = last_name;
+        user.last_name = last_name;
     }
 
     public void setMobile(String mobile)
     {
-        User.mobile = mobile;
+        user.mobile = mobile;
     }
 
     public void setAddress(String address)
     {
-        User.address = address;
+        user.address = address;
     }
 
     public void setEmail(String email)
     {
-        User.email = email;
+        user.email = email;
     }
 
     public void setNational_id(String national_id)
     {
-        User.national_id = national_id;
+        user.national_id = national_id;
     }
 
     public void setSerial_number(String serial_number)
     {
-        User.serial_number = serial_number;
+        user.serial_number = serial_number;
     }
 
     public void setDevice_id(String device_id)
     {
-        User.device_id = device_id;
+        user.device_id = device_id;
     }
 
 
@@ -115,12 +115,12 @@ public class User {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        User.reg_date = inputDate;
+        user.reg_date = inputDate;
     }
 
     public void setVerified(boolean verified)
     {
-        User.verified = verified;
+        user.verified = verified;
     }
 
     public void verify()
@@ -229,9 +229,9 @@ public class User {
             obj.put("last_name", this.getLast_name());
             obj.put("mobile", this.getMobile());
             obj.put("address", this.getAddress()); */
-            obj.put("email", this.getEmail());
-            obj.put("national_id", this.getNational_id());
             obj.put("serial", this.getSerial_number());
+            obj.put("national_id", this.getNational_id());
+            obj.put("email", this.getEmail());
 //            obj.put("reg_date", this.getRegDateString());
 //            obj.put("verified", this.getVerified());
 

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
@@ -114,21 +116,32 @@ public class MainScreen extends Activity {
         if (requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
         //    performCrop(data.getData());
+         //   String t= "Hello OCR";
             Intent mainToCam = new Intent(MainScreen.this, Camera_scan.class);
-            mainToCam.putExtra("Reading", photo);
+            mainToCam.putExtra("Reading",encodeTobase64(photo));
             startActivity(mainToCam);
         }
-
+/*
        else if(requestCode == PIC_CROP){
                 Bundle extras = data.getExtras();
                 Bitmap thePic = extras.getParcelable("data");
                 Intent mainToCam =  new Intent(MainScreen.this , Camera_scan.class);
                 mainToCam.putExtra("Reading",thePic);
                 startActivity(mainToCam);
-        }
+        }*/
         else {
             startActivity(new Intent(this, MainScreen.class));
         }
+    }
+    private static String encodeTobase64(Bitmap image)
+    {
+        Bitmap imagex=image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        return imageEncoded;
     }
     private void performCrop(Uri picUri){
         try {

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.models.SharedPref;
-import edu.aucegypt.ingyn.e3adad.models.User;
+import edu.aucegypt.ingyn.e3adad.models.user;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class SignIN extends Activity {
@@ -34,7 +34,7 @@ public class SignIN extends Activity {
     private String user_id,device_id;
     public static Activity SIGNIN;
     static boolean active = false;
-    User newUser;
+    user newUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,18 +69,15 @@ public class SignIN extends Activity {
                 nationalID = nationalID_in.getText().toString();
                 serialNumber = serialNumber_in.getText().toString();
                 email = email_in.getText().toString();
-                if (nationalID.length() <= 14) {
+                if (nationalID.length() != 14) {
                     Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
-                } else if(serialNumber.length()<= 10) {
+                } else if(serialNumber.length() != 10) {
                     Toast.makeText(SignIN.this, "Invalid Serial Number", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     // Maybe we should keep it as a string
                     // the number is too big....
-
                     RegisterNewUser();
-
-
                 }
             }
         });
@@ -88,7 +85,7 @@ public class SignIN extends Activity {
     }
     private void RegisterNewUser(){
 
-       newUser = new User(serialNumber,nationalID,email);
+       newUser = new user(serialNumber,nationalID,email);
 
         // POST Request to send Data to the database
         JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL, newUser.toJSON() ,new Response.Listener<JSONObject>() {
@@ -97,11 +94,12 @@ public class SignIN extends Activity {
                 Toast.makeText(SignIN.this, response.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("Volley response Sign In", response.toString());
                 try {
-                    user_id =String.valueOf(response.getInt("user_id"));
+                    user_id = String.valueOf(response.getInt("user_id"));
                     device_id = String.valueOf(response.getInt("device_id"));
 
                     newUser.setDevice_id(device_id);
                     newUser.setId(user_id);
+
                     SharedPref s = new SharedPref(SignIN.this, user_id, device_id);
                     s.saveData();
                 } catch (JSONException e) {
