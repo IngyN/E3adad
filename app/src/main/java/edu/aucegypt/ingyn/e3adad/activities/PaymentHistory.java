@@ -111,6 +111,8 @@ public class PaymentHistory extends Activity {
             if(arr.length() == 0)
                 Toast.makeText(PaymentHistory.this, "No submissions found.", Toast.LENGTH_LONG).show();
 
+            submissionList.clear();
+
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
 
