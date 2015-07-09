@@ -80,13 +80,13 @@ public class Camera_scan extends Activity{
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-               /*         JSONArray errors = null;
+                        JSONArray errors = null;
                         try {
                             errors = response.getJSONArray("failed");
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }*/
-                        if(response.has("failed")) {
+                        }
+                        if(errors!= null && errors.length()>0) {
                             Toast.makeText(Camera_scan.this, "Error: " + response.optString("error", ""), Toast.LENGTH_SHORT).show();
                         }else{
                             try {
