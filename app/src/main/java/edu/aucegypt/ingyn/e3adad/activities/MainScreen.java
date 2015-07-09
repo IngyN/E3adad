@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,10 +41,10 @@ public class MainScreen extends Activity {
         SharedPref shpr = new SharedPref(this);
 
         estimate = (TextView) findViewById(R.id.estimate);
-        if(shpr.getLast_estimation()==0){
+        if(SharedPref.getLast_estimation()==0){
             estimate.setText("= 0");
         }else{
-            estimate.setText("= "+shpr.getLast_estimation());
+            estimate.setText("= "+ SharedPref.getLast_estimation());
         }
 
         if(SignIN.active){
@@ -102,13 +101,6 @@ public class MainScreen extends Activity {
         actionBar.setHomeButtonEnabled(true);
 
         actionBar.setTitle("E-3adad");
-
-        actionBar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
-
-        Window w = getWindow();
-        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
-        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
-
 
         //actionBar.
 

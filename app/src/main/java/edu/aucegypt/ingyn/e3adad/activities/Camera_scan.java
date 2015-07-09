@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,11 +45,11 @@ public class Camera_scan extends Activity{
         put_price = (TextView) findViewById(R.id.tvPrice);
 
         ActionBar bar = this.getActionBar();
-        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
+//        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
         bar.setTitle("Confirm");
-        Window w = getWindow();
-        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
-        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
+//        Window w = getWindow();
+//        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+//        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
 
         getReading();
     }

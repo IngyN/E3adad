@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -51,11 +50,12 @@ public class PaymentHistory extends Activity {
         progress.show();
 
         ActionBar bar = this.getActionBar();
-        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
+//        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
         bar.setTitle("Payment History");
-        Window w = getWindow();
-        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
-        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
+//
+//        Window w = getWindow();
+//        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+//        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
 
         String user_id =SharedPref.getUser_id();
 

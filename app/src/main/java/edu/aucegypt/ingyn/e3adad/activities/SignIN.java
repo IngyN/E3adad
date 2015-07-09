@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,11 +48,11 @@ public class SignIN extends Activity {
 
         bar.setTitle("E-3adad");
 //        ActionBar bar = getActionBar();
-        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
+//        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
 
-        Window w = getWindow();
-        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
-        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
+//        Window w = getWindow();
+//        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
+//        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
 
 //        bar.setHomeButtonEnabled(true);
 //        bar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO);
