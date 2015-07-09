@@ -17,29 +17,30 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/primary" />
+        android:background="@color/darkprimary" />
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:id="@+id/stat"
         android:layout_alignStart="@+id/bottomenu"
-        android:src="@drawable/stats"
+        android:src="@drawable/statswhite"
         android:scaleType="fitXY"
         android:layout_marginLeft="20dp"
         android:clickable="true"
-        android:layout_alignBottom="@+id/pay" />
+        android:layout_alignBottom="@+id/pay"
+        android:adjustViewBounds="false" />
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:id="@+id/pay"
-        android:src="@drawable/paymenthistory"
+        android:src="@drawable/paymenthistorywhite"
         android:layout_alignBottom="@+id/bottomenu"
         android:layout_alignEnd="@+id/bottomenu"
         android:layout_marginRight="20dp"
         android:clickable="true"
-        android:layout_marginBottom="7dp" />
+        android:layout_marginBottom="10dp" />
 
     <ImageButton
         android:layout_width="160dp"
@@ -76,26 +77,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/primarytext"
+        android:textColor="@color/text_icons"
         android:text="Statistics"
         android:id="@+id/textView"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/stat"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/primarytext"
-        android:text="Payment\n History"
+        android:textColor="@color/text_icons"
+        android:text="History"
         android:id="@+id/phist"
         android:textSize="18dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignTop="@+id/pay"
-        android:layout_toStartOf="@+id/pay"
-        android:layout_alignBottom="@+id/pay" />
+        android:layout_marginRight="15dp"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toStartOf="@+id/pay" />
 
     <TextView
         android:layout_width="wrap_content"

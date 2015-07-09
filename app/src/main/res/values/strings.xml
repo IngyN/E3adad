@@ -10,9 +10,9 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_statistics">Statistics</string>
-    <string name="title_activity_payment_history">PaymentHistory</string>
+    <string name="title_activity_payment_history">Payment History</string>
     <string name="title_activity_sign_in">SignIN</string>
-    <string name="title_activity_payment">PaymentActivity</string>
+    <string name="title_activity_payment">Payment</string>
     <string name="title_activity_temporary">Temporary</string>
     <!--<string name="mainfont" />-->
 </resources>
