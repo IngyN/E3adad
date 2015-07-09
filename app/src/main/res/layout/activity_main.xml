@@ -71,7 +71,7 @@
         android:text="Last Estimation"
         android:layout_below="@+id/update"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,4 +96,12 @@
         android:layout_alignTop="@+id/pay"
         android:layout_toStartOf="@+id/pay"
         android:layout_alignBottom="@+id/pay" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/estimate"
+        android:layout_alignBottom="@+id/estimation"
+        android:layout_toEndOf="@+id/take_photo"
+        android:textColor="@color/background_material_dark" />
 </RelativeLayout>

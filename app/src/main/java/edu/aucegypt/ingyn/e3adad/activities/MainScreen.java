@@ -16,17 +16,20 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
+import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 
 
 public class MainScreen extends Activity {
     private ImageButton take_photo;
     private ImageView payment,statistics;
+    private TextView estimate;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
   //  final int startDay = 20, endDay = 31;
@@ -35,6 +38,15 @@ public class MainScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPref shpr = new SharedPref(this);
+
+        estimate = (TextView) findViewById(R.id.estimate);
+        if(shpr.getLast_estimation()==0){
+            estimate.setText("= 0");
+        }else{
+            estimate.setText("= "+shpr.getLast_estimation());
+        }
 
         if(SignIN.active){
             SignIN.active = false;
