@@ -13,19 +13,145 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp">
 
         <WebView
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/webView"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.6" />
+            android:layout_weight="0.6"
+            android:background="@drawable/custom_edittext" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.4"></LinearLayout>
+            android:layout_weight="0.4"
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Total Energy Consumed"
+                    android:id="@+id/totalEnergy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="28, 473, 585 kW"
+                    android:id="@+id/totalenergyvalue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Average Consumption per Month"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="13,523 kW"
+                    android:id="@+id/avgconsumption" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Average Cost per Month"
+                    android:id="@+id/textView6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="145 LE"
+                    android:id="@+id/avgcost" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Energy Saved this Month"
+                    android:id="@+id/textView8" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="15,034 kW"
+                        android:id="@+id/energysaved"
+                        android:layout_marginRight="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="30%"
+                        android:id="@+id/energysavedvalue"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/facebook_share"
+                        android:layout_gravity="right" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/google_share"
+                        android:layout_gravity="right" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
