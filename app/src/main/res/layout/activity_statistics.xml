@@ -16,8 +16,8 @@
         android:weightSum="1"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingRight="2dp"
-        android:paddingLeft="2dp">
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp">
 
         <WebView
             android:layout_width="match_parent"
@@ -33,28 +33,31 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.4"
             android:layout_marginTop="5dp"
-            android:padding="5dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Total Energy Consumed"
-                    android:id="@+id/totalEnergy" />
+                    android:id="@+id/totalEnergy"
+                    android:textColor="@color/secondarytext" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="28, 473, 585 kW"
-                    android:id="@+id/totalenergyvalue" />
+                    android:text="28,473,585 kW"
+                    android:id="@+id/totalenergyvalue"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/accent" />
 
             </LinearLayout>
 
@@ -70,14 +73,17 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Average Consumption per Month"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textView3"
+                    android:textColor="@color/secondarytext" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="13,523 kW"
-                    android:id="@+id/avgconsumption" />
+                    android:id="@+id/avgconsumption"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/accent" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,14 +98,17 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Average Cost per Month"
-                    android:id="@+id/textView6" />
+                    android:id="@+id/textView6"
+                    android:textColor="@color/secondarytext" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="145 LE"
-                    android:id="@+id/avgcost" />
+                    android:id="@+id/avgcost"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/accent" />
             </LinearLayout>
 
             <LinearLayout
@@ -114,12 +123,14 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Energy Saved this Month"
-                    android:id="@+id/textView8" />
+                    android:id="@+id/textView8"
+                    android:textColor="@color/secondarytext" />
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,7 +138,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="15,034 kW"
                         android:id="@+id/energysaved"
-                        android:layout_marginRight="20dp" />
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/accent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -135,7 +147,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="30%"
                         android:id="@+id/energysavedvalue"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/primary" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
