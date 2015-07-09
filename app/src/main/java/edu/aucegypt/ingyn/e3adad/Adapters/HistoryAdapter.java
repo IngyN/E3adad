@@ -68,15 +68,15 @@ public class HistoryAdapter extends BaseAdapter {
         // Payment Status
         if(s.isPending())
         {
-            status.setColorFilter(R.color.pending, PorterDuff.Mode.MULTIPLY);
+            status.mutate().setColorFilter(R.color.pending, PorterDuff.Mode.MULTIPLY);
         }
         else if(s.isPaid())
         {
-            status.setColorFilter(R.color.paid, PorterDuff.Mode.MULTIPLY);
+            status.mutate().setColorFilter(R.color.paid, PorterDuff.Mode.MULTIPLY);
         }
         else if (s.isLate())
         {
-            status.setColorFilter(R.color.late, PorterDuff.Mode.MULTIPLY);
+            status.mutate().setColorFilter(R.color.late, PorterDuff.Mode.MULTIPLY);
         }
         // Date
         submission_date.setText(s.getSubmission_dateString());
