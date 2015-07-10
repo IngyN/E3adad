@@ -5,15 +5,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.JavascriptInterface;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
 public class Statistics extends Activity{
 
+    WebView statistic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        statistic = (WebView)findViewById(R.id.webView);
+        //webView.addJavascriptInterface(new WebAppInterface(), "Android");
+
+        statistic.getSettings().setJavaScriptEnabled(true);
+        statistic.loadUrl("http://baseetta.com/hatem/e3adad/stats.php?user_id=3");
+        //statistic.loadUrl("http://baseetta.com/hatem/e3adad/stats.php?user_id="+ user_id);
     }
 
     @Override

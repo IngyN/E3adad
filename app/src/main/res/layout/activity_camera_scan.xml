@@ -13,7 +13,8 @@
         android:layout_alignBaseline="@+id/tvRead"
         android:layout_alignBottom="@+id/tvRead"
         android:layout_alignParentStart="true"
-        android:textSize="@dimen/abc_text_size_title_material_toolbar" />
+        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textColor="@color/accent_material_dark" />
 
     <ImageView
         android:layout_width="150dp"
@@ -28,7 +29,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvRead"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/photo" />
+        android:layout_toEndOf="@+id/photo"
+        android:textColor="@color/accent_material_dark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +38,8 @@
         android:id="@+id/tvPrice"
         android:layout_below="@+id/tvRead"
         android:layout_toEndOf="@+id/read"
-        android:layout_marginTop="45dp" />
+        android:layout_marginTop="45dp"
+        android:textColor="@color/accent_material_dark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,6 +48,7 @@
         android:id="@+id/textView2"
         android:layout_below="@+id/tvPrice"
         android:layout_alignParentStart="true"
-        android:textSize="@dimen/abc_text_size_title_material_toolbar" />
+        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textColor="@color/accent_material_dark" />
 
 </RelativeLayout>

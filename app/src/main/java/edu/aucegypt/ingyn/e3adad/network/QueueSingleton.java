@@ -25,7 +25,7 @@ public class QueueSingleton {
         mImageLoader = new ImageLoader(mRequestQueue,
                 new ImageLoader.ImageCache() {
                     private final LruCache<String, Bitmap>
-                            cache = new LruCache<>(4 * 1024 * 1024);
+                            cache = new LruCache<String, Bitmap>(4 * 1024 * 1024);
 
                     @Override
                     public Bitmap getBitmap(String url) {

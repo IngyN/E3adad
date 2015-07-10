@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +29,8 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 public class MainScreen extends Activity {
     private ImageButton take_photo;
     private ImageView payment,statistics;
-    private TextView estimate;
+    private TextView estimate,update;
+    Button pay;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
   //  final int startDay = 20, endDay = 31;
@@ -44,7 +46,13 @@ public class MainScreen extends Activity {
         if(SharedPref.getLast_estimation()==0){
             estimate.setText("= 0");
         }else{
-            estimate.setText("= "+ SharedPref.getLast_estimation());
+            estimate.setText("= "+ SharedPref.getLast_estimation() + "LE");
+        }
+        update = (TextView) findViewById(R.id.updated);
+        if(SharedPref.getLast_Update()==null){
+            update.setText(": 01/01/2020");
+        }else{
+            update.setText(": "+ SharedPref.getLast_Update());
         }
 
         if(SignIN.active){

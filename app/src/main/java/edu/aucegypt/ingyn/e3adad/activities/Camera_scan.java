@@ -2,12 +2,15 @@ package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ public class Camera_scan extends Activity{
     private TextView put_value,put_price;
     private int final_reading, submission_id;
     private double price;
+    Button payNow;
     final private String API_URL = "http://baseetta.com/hatem/e3adad/submit.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,15 @@ public class Camera_scan extends Activity{
 //        Window w = getWindow();
 //        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
 //        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
-
+   /*     payNow = (Button)findViewById(R.id.pay);
+        payNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainToP = new Intent(Camera_scan.this, PaymentAction.class);
+             //   mainToP.putExtra("price",)
+                startActivity(mainToP);
+            }
+        });*/
         getReading();
     }
 
@@ -103,7 +115,7 @@ public class Camera_scan extends Activity{
                                 newSub.setId(String.valueOf(submission_id));
                                 newSub.setSubmission_date(submission_date);
 
-                                SharedPref sp = new SharedPref(Camera_scan.this, String.valueOf(final_reading));
+                                SharedPref sp = new SharedPref(Camera_scan.this, (float)price);
                                 sp.saveEstimate();
 
                             } catch (JSONException e) {
