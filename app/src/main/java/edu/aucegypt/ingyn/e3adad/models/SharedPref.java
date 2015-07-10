@@ -10,7 +10,7 @@ public class SharedPref {
     static String user_id;
     static String device_id;
     static Context context;
-    static String last_estimation;
+    static float last_estimation;
     static String last_update;
 
     static SharedPreferences user_data;
@@ -28,12 +28,17 @@ public class SharedPref {
         user_data = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = user_data.edit();
     }
-    public SharedPref(Context context,String last_estimation){
-        SharedPref.last_estimation = last_estimation;
+    public SharedPref(Context context,String last_update){
+        SharedPref.last_update = last_update;
         user_data = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = user_data.edit();
     }
 
+    public SharedPref(Context context,float last_estimation){
+        SharedPref.last_estimation = last_estimation;
+        user_data = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        editor = user_data.edit();
+    }
      public void saveData(){
         editor.putString("user_id", user_id);
         editor.commit();
@@ -41,7 +46,11 @@ public class SharedPref {
         editor.commit();
     }
     public void saveEstimate(){
-        editor.putString("last_estimation", last_estimation);
+        editor.putFloat("last_estimation", last_estimation);
+        editor.commit();
+    }
+    public void saveLastUpdate(){
+        editor.putString("last_update", last_update);
         editor.commit();
     }
     static public String getUser_id(){
@@ -62,12 +71,20 @@ public class SharedPref {
         else return null;
 
     }
-    static public int getLast_estimation() {
+    static public float getLast_estimation() {
         if (user_data.contains("last_estimation")){
-            last_estimation = user_data.getString("last_estimation", null);
-            return Integer.parseInt(last_estimation);
+            last_estimation = user_data.getFloat("last_estimation", 0);
+            return last_estimation;
         }
         else return 0;
+
+    }
+    static public String getLast_Update() {
+        if (user_data.contains("last_update")){
+            last_update = user_data.getString("last_update", null);
+            return last_update;
+        }
+        else return null;
 
     }
 

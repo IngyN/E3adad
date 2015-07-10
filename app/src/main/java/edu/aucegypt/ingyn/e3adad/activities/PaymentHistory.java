@@ -30,7 +30,9 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import edu.aucegypt.ingyn.e3adad.Adapters.HistoryAdapter;
@@ -158,9 +160,12 @@ public class PaymentHistory extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (submissionList.get(position).isPaid()) {
                     Toast.makeText(PaymentHistory.this, "You already paid for this", Toast.LENGTH_SHORT).show();
-                } else if (submissionList.get(position).isPending()) {
+                }
+                else if (submissionList.get(position).isPending()) {
                     Toast.makeText(PaymentHistory.this, "The price is not finalized yet", Toast.LENGTH_SHORT).show();
-                } else if (submissionList.get(position).isLate()) {
+                }
+                else if (submissionList.get(position).isLate()) {
+
                     PayPalPayment payment = new PayPalPayment(new BigDecimal("50"), "USD", "your Consumption:",
                             PayPalPayment.PAYMENT_INTENT_SALE);
 
@@ -168,8 +173,14 @@ public class PaymentHistory extends Activity {
 
                     // send the same configuration for restart resiliency
                     i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-
                     i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+                    submissionList.get(position).setIs_paid(2);
+
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
+                    String strDate = sdf.format(c.getTime());
+                    SharedPref s = new SharedPref(PaymentHistory.this,strDate);
+                    s.saveLastUpdate();
 
                     startActivityForResult(i, 0);
                 }

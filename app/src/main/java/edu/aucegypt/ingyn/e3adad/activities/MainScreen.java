@@ -29,7 +29,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 public class MainScreen extends Activity {
     private ImageButton take_photo;
     private ImageView payment,statistics;
-    private TextView estimate;
+    private TextView estimate,update;
     Button pay;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
@@ -47,6 +47,12 @@ public class MainScreen extends Activity {
             estimate.setText("= 0");
         }else{
             estimate.setText("= "+ SharedPref.getLast_estimation() + "LE");
+        }
+        update = (TextView) findViewById(R.id.updated);
+        if(SharedPref.getLast_Update()==null){
+            update.setText(": 01/01/2020");
+        }else{
+            update.setText(": "+ SharedPref.getLast_Update());
         }
 
         if(SignIN.active){

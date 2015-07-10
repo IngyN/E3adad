@@ -115,7 +115,7 @@ public class Camera_scan extends Activity{
                                 newSub.setId(String.valueOf(submission_id));
                                 newSub.setSubmission_date(submission_date);
 
-                                SharedPref sp = new SharedPref(Camera_scan.this, String.valueOf(price));
+                                SharedPref sp = new SharedPref(Camera_scan.this, (float)price);
                                 sp.saveEstimate();
 
                             } catch (JSONException e) {
