@@ -3,6 +3,7 @@ package edu.aucegypt.ingyn.e3adad.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -78,10 +79,10 @@ public class HistoryAdapter extends BaseAdapter {
         else if (s.isLate())
         {
 
-            //tatus.mutate().setColorFilter(Color.parseColor(convertView.getResources().getColor(R.color.late));
-           Drawable st =  status.getDrawable();
+            //status.mutate().setColorFilter(Color.parseColor(convertView.getResources().getColor(R.color.late));
+     /*      Drawable st =  status.getDrawable();
             int late= convertView.getResources().getColor(R.color.late);
-            st.setColorFilter(late, PorterDuff.Mode.MULTIPLY);
+            st.setColorFilter(late, PorterDuff.Mode.MULTIPLY);*/
         }
         // Date
         submission_date.setText(s.getSubmission_dateString());
