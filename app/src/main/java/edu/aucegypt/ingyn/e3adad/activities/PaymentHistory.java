@@ -45,7 +45,7 @@ public class PaymentHistory extends Activity {
 
     final private String API_URL = "http://baseetta.com/hatem/e3adad/history.php";
 
-    private List<submission> submissionList = new ArrayList<>();
+    private List<submission> submissionList = new ArrayList<submission>();
     private ListView listView;
     private HistoryAdapter adapter;
     PayPalConfiguration config = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK).clientId("<YOUR_CLIENT_ID>");

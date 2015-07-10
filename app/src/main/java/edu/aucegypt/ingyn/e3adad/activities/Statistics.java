@@ -23,7 +23,8 @@ public class Statistics extends Activity{
         //webView.addJavascriptInterface(new WebAppInterface(), "Android");
 
         statistic.getSettings().setJavaScriptEnabled(true);
-        statistic.loadUrl("file:///android_asset/GetData_js.html");
+        statistic.loadUrl("http://baseetta.com/hatem/e3adad/stats.php?user_id=3");
+        //statistic.loadUrl("http://baseetta.com/hatem/e3adad/stats.php?user_id="+ user_id);
     }
 
     @Override
