@@ -47,4 +47,13 @@
         android:layout_alignParentStart="true"
         android:textSize="@dimen/abc_text_size_title_material_toolbar" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay now"
+        android:id="@+id/pay"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

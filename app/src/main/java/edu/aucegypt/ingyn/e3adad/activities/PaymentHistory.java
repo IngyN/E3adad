@@ -17,12 +17,18 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +46,15 @@ public class PaymentHistory extends Activity {
     private List<submission> submissionList = new ArrayList<>();
     private ListView listView;
     private HistoryAdapter adapter;
-
+    PayPalConfiguration config = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK).clientId("<YOUR_CLIENT_ID>");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_history);
 
+        Intent intent = new Intent(PaymentHistory.this, PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        startService(intent);
         //A ProgressDialog object
         final ProgressDialog progress = new ProgressDialog(PaymentHistory.this);
         progress.setMessage(" Loading ");progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -100,6 +109,10 @@ public class PaymentHistory extends Activity {
 
         QueueSingleton.getInstance(this).addToRequestQueue(request);
     }
+    public void onDestroy() {
+        stopService(new Intent(this, PayPalService.class));
+        super.onDestroy();
+    }
 
     public void publish(JSONObject response)
     {
@@ -139,21 +152,32 @@ public class PaymentHistory extends Activity {
         adapter = new HistoryAdapter(this, submissionList);
 
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (submissionList.get(position).getIs_paid()==2){
-                    Toast.makeText(PaymentHistory.this, "You already paid for this" ,Toast.LENGTH_LONG).show();
-                }
-                else if( submissionList.get(position).getIs_paid()==1){
-                    Toast.makeText(PaymentHistory.this, "The price is not finalized yet" ,Toast.LENGTH_LONG).show();
-                }
-                else if( submissionList.get(position).getIs_paid()==1){
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (submissionList.get(position).isPaid()) {
+                    Toast.makeText(PaymentHistory.this, "You already paid for this", Toast.LENGTH_SHORT).show();
+                } else if (submissionList.get(position).isPending()) {
+                    Toast.makeText(PaymentHistory.this, "The price is not finalized yet", Toast.LENGTH_SHORT).show();
+                } else if (submissionList.get(position).isLate()) {
+                    PayPalPayment payment = new PayPalPayment(new BigDecimal("50"), "USD", "your Consumption:",
+                            PayPalPayment.PAYMENT_INTENT_SALE);
+
+                    Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
+
+                    // send the same configuration for restart resiliency
+                    i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
+                    i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+
+                    startActivityForResult(i, 0);
                 }
             }
 
 
         });
+
     }
 
 
@@ -177,5 +201,28 @@ public class PaymentHistory extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+            if (confirm != null) {
+                try {
+                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
+
+                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
+                    // for more details.
+
+                } catch (JSONException e) {
+                    Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                }
+            }
+        }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            Log.i("paymentExample", "The user canceled.");
+        }
+        else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+        }
     }
 }

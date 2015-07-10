@@ -104,4 +104,5 @@
         android:layout_alignBottom="@+id/estimation"
         android:layout_toEndOf="@+id/take_photo"
         android:textColor="@color/background_material_dark" />
+
 </RelativeLayout>
