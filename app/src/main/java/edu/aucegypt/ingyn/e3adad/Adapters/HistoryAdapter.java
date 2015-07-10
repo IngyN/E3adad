@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class HistoryAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-        Drawable status = convertView.getResources().getDrawable(R.drawable.status_button);
+        ImageView status = (ImageView) convertView.findViewById(R.id.status);
         TextView payment_date = (TextView) convertView.findViewById(R.id.paid);
         TextView price = (TextView) convertView.findViewById(R.id.amount);
         TextView submission_date = (TextView) convertView.findViewById(R.id.recorded);
@@ -68,15 +69,19 @@ public class HistoryAdapter extends BaseAdapter {
         // Payment Status
         if(s.isPending())
         {
-            status.mutate().setColorFilter(R.color.pending, PorterDuff.Mode.MULTIPLY);
+            //status.mutate().setColorFilter(R.color.pending, PorterDuff.Mode.MULTIPLY);
         }
         else if(s.isPaid())
         {
-            status.mutate().setColorFilter(R.color.paid, PorterDuff.Mode.MULTIPLY);
+            //status.mutate().setColorFilter(R.color.paid, PorterDuff.Mode.MULTIPLY);
         }
         else if (s.isLate())
         {
-            status.mutate().setColorFilter(R.color.late, PorterDuff.Mode.MULTIPLY);
+
+            //tatus.mutate().setColorFilter(Color.parseColor(convertView.getResources().getColor(R.color.late));
+           Drawable st =  status.getDrawable();
+            int late= convertView.getResources().getColor(R.color.late);
+            st.setColorFilter(late, PorterDuff.Mode.MULTIPLY);
         }
         // Date
         submission_date.setText(s.getSubmission_dateString());

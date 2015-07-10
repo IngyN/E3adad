@@ -52,6 +52,9 @@ public class PaymentHistory extends Activity {
         ActionBar bar = this.getActionBar();
 //        bar.setBackgroundDrawable(getDrawable(R.color.darkprimary));
         bar.setTitle("Payment History");
+
+        // setup action bar for tabs
+
 //
 //        Window w = getWindow();
 //        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
@@ -162,4 +165,7 @@ public class PaymentHistory extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
