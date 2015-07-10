@@ -5,15 +5,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.JavascriptInterface;
 
 import edu.aucegypt.ingyn.e3adad.R;
 
 public class Statistics extends Activity{
 
+    WebView statistic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        statistic = (WebView)findViewById(R.id.webView);
+        //webView.addJavascriptInterface(new WebAppInterface(), "Android");
+
+        statistic.getSettings().setJavaScriptEnabled(true);
+        statistic.loadUrl("file:///android_asset/GetData_js.html");
     }
 
     @Override

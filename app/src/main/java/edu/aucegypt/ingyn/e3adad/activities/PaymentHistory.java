@@ -3,10 +3,13 @@ package edu.aucegypt.ingyn.e3adad.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -136,8 +139,21 @@ public class PaymentHistory extends Activity {
         adapter = new HistoryAdapter(this, submissionList);
 
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (submissionList.get(position).getIs_paid()==2){
+                    Toast.makeText(PaymentHistory.this, "You already paid for this" ,Toast.LENGTH_LONG).show();
+                }
+                else if( submissionList.get(position).getIs_paid()==1){
+                    Toast.makeText(PaymentHistory.this, "The price is not finalized yet" ,Toast.LENGTH_LONG).show();
+                }
+                else if( submissionList.get(position).getIs_paid()==1){
+
+                }
+            }
 
 
+        });
     }
 
 
