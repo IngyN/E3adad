@@ -1,7 +1,0 @@
-<resources>
-
-    <color name="black_overlay">#66000000</color>
-    <color name="paid">#ff046657</color>
-    <color name="pending">#ffadadad</color>
-    <color name="late">#ffb81d27</color>
-</resources>
