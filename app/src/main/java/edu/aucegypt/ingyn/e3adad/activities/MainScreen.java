@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -29,7 +30,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 public class MainScreen extends Activity {
     private ImageButton take_photo;
     private ImageView payment,statistics;
-    private TextView estimate,update;
+    private TextView last_submission,last_payment;
     Button pay;
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
@@ -40,20 +41,7 @@ public class MainScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPref shpr = new SharedPref(this);
 
-        estimate = (TextView) findViewById(R.id.estimate);
-        if(SharedPref.getLast_estimation()==0){
-            estimate.setText("= 0");
-        }else{
-            estimate.setText("= "+ SharedPref.getLast_estimation() + "LE");
-        }
-        update = (TextView) findViewById(R.id.updated);
-        if(SharedPref.getLast_Update()==null){
-            update.setText(": 01/01/2020");
-        }else{
-            update.setText(": "+ SharedPref.getLast_Update());
-        }
 
         if(SignIN.active){
             SignIN.active = false;
@@ -62,6 +50,39 @@ public class MainScreen extends Activity {
         if(SplashScreen.active){
             SplashScreen.active = false;
             SplashScreen.Splash.finish();
+        }
+
+        //STATUS
+        last_submission = (TextView)findViewById(R.id.last_submission);
+        last_payment = (TextView)findViewById(R.id.last_payment);
+
+        SharedPref shpr = new SharedPref(this);
+
+        if(SharedPref.getLast_submission()== null){
+            last_submission.setText("You don't have any previous submissions.");
+
+            last_payment.setText("You don't have any pending payments.");
+            last_payment.setTextColor(Color.GREEN);
+        } else{
+            last_submission.setText("Your last reading was ");
+            last_submission.append(SharedPref.getLast_reading());
+            last_submission.append(" on ");
+            last_submission.append(SharedPref.getLast_submission());
+
+            if((SharedPref.getLast_paid()) ==  "0")
+            {
+                last_payment.setText("You have unpaid payments.");
+                last_payment.setTextColor(Color.RED);
+            }else if((SharedPref.getLast_paid()) ==  "1")
+            {
+                last_payment.setText("You have a pending payment.");
+                last_payment.setTextColor(Color.YELLOW);
+            }else{
+                last_payment.setText("You don't have any pending payments.");
+                last_payment.setTextColor(Color.parseColor("#12585B"));
+            }
+
+
         }
 
         Calendar calendar = Calendar.getInstance();

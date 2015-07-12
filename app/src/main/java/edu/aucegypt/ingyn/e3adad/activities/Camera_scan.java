@@ -2,6 +2,7 @@ package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,8 +33,8 @@ import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 public class Camera_scan extends Activity{
     private String read_image;
     private TextView put_value,put_price;
-    private int final_reading, submission_id;
-    private double price;
+    private String final_reading, submission_id, price;
+
     Button payNow;
     final private String API_URL = "http://baseetta.com/hatem/e3adad/submit.php";
     @Override
@@ -102,21 +103,18 @@ public class Camera_scan extends Activity{
                         }else{
                             try {
                                 Toast.makeText(Camera_scan.this, "Sent", Toast.LENGTH_SHORT).show();
-                                final_reading = response.getInt("reading");
-                                price = response.getDouble("price");
-                                submission_id = response.getInt("submission_id");
+                                final_reading = response.getString("reading");
+                                price = response.getString("price");
+                                submission_id = response.getString("submission_id");
                                 String submission_date = response.getString("submission_date");
 
                                 put_value.setText(String.valueOf(final_reading));
                                 put_price.setText(String.valueOf(price));
 
-                                newSub.setReading(String.valueOf(final_reading));
-                                newSub.setPrice(price);
-                                newSub.setId(String.valueOf(submission_id));
-                                newSub.setSubmission_date(submission_date);
 
-                                SharedPref sp = new SharedPref(Camera_scan.this, (float)price);
-                                sp.saveEstimate();
+
+                                SharedPref sp = new SharedPref(Camera_scan.this, submission_date, price, final_reading, "0");
+                                sp.saveData();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
