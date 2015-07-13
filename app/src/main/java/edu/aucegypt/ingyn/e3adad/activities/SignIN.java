@@ -31,7 +31,7 @@ public class SignIN extends Activity {
     private Button login_user;
     private String nationalID,serialNumber,email;
     private String API_URL = "http://baseetta.com/hatem/e3adad/login.php";
-    private String user_id,device_id, last_s_id, last_submission, last_paid, last_price, last_reading;
+    private String user_id,device_id, last_s_id, last_submission, not_paid, last_price, last_reading;
     public static Activity SIGNIN;
     static boolean active = false;
     private TextView redirect;
@@ -123,10 +123,10 @@ public class SignIN extends Activity {
                     last_submission = String.valueOf(response.getString("last_submission"));
                     last_price = String.valueOf(response.getString("last_price"));
                     last_reading = String.valueOf(response.getString("last_reading"));
-                    last_paid = String.valueOf(response.getString("last_paid"));
+                    not_paid = String.valueOf(response.getString("not_paid"));
 
 
-                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id, last_s_id, last_submission, last_price, last_reading, last_paid);
+                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id, last_s_id, last_submission, last_price, last_reading, not_paid);
                     s.saveData();
 
 
