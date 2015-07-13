@@ -33,8 +33,8 @@ public class Statistics extends Activity{
 
     private String user_id;
     private String API_URL = "http://baseetta.com/hatem/e3adad/consumption.php";
-    private String AvgCost, AvgCons, TotalCons;
-    private TextView tAvgCost, tAvgCons, tTotalCons;
+    private String progress, AvgCost, AvgCons, TotalCons, diff;
+    private TextView tProgress, tAvgCost, tAvgCons, tTotalCons;
     WebView statistic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class Statistics extends Activity{
         tAvgCost = (TextView) findViewById(R.id.AvgCost);
         tAvgCons = (TextView) findViewById(R.id.AvgCons);
         tTotalCons = (TextView) findViewById(R.id.TotalCons);
+        tProgress = (TextView) findViewById(R.id.progress);
 
 
         SharedPref shpr = new SharedPref(this);
@@ -77,11 +78,14 @@ public class Statistics extends Activity{
                                 AvgCost = response.getString("AvgCost");
                                 AvgCons = response.getString("AvgCons");
                                 TotalCons = response.getString("TotalCons");
+                                progress = response.getString("progress");
+                                diff = response.getString("diff");
 
 
                                 tAvgCost.setText(AvgCost + " LE");
                                 tAvgCons.setText(AvgCons + " kW");
                                 tTotalCons.setText(TotalCons + " kW");
+                                tProgress.setText(progress + " % better / " + diff + " kW saved");
 
 
                             } catch (JSONException e) {

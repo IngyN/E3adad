@@ -62,7 +62,7 @@ public class MainScreen extends Activity {
             last_submission.setText("You don't have any previous submissions.");
 
             last_payment.setText("You don't have any pending payments.");
-            last_payment.setTextColor(Color.GREEN);
+            last_payment.setTextColor(this.getResources().getColor(R.color.primary));
         } else{
             last_submission.setText("Your last reading was ");
             last_submission.append(SharedPref.getLast_reading());
