@@ -110,6 +110,31 @@
                     android:textColor="@color/accent" />
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Average Cost per Month"
+                    android:id="@+id/textView7"
+                    android:textColor="@color/secondarytext" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="- -"
+                    android:id="@+id/textView8"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/accent" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
