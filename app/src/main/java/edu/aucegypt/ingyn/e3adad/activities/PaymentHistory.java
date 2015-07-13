@@ -246,7 +246,8 @@ public class PaymentHistory extends Activity {
                 Toast.makeText(PaymentHistory.this, "Network error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
+        // From Hagar to Ingy, this line was missing . after adding it, we have a volley error
+        QueueSingleton.getInstance(this).addToRequestQueue(request);
     }
 
 

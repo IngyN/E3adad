@@ -66,7 +66,7 @@ public class MainScreen extends Activity {
         } else{
             last_submission.setText("Your last reading was ");
             last_submission.append(SharedPref.getLast_reading());
-            last_submission.append(" on ");
+            last_submission.append(" KW on ");
             last_submission.append(SharedPref.getLast_submission());
 
             if((SharedPref.getNot_paid()) ==  "0")
