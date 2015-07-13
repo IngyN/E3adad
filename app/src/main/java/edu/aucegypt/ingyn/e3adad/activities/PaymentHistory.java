@@ -225,6 +225,7 @@ public class PaymentHistory extends Activity {
                     {
                         Toast.makeText(PaymentHistory.this, "Shiiiiiiiiiit", Toast.LENGTH_LONG).show();
                     }
+
                     PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(temp.getPrice())), "USD", "Your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
 
                     Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
