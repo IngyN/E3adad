@@ -29,7 +29,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 
 public class MainScreen extends Activity {
     private ImageButton take_photo,Bluetooth_pair;
-    private ImageView payment,statistics;
+    private ImageView payment,statistics,Signout;
     private TextView last_submission,last_payment;
     Button pay;
     final int REQUEST_PHOTO = 1;
@@ -99,8 +99,20 @@ public class MainScreen extends Activity {
             }
         });
 
-        // bluetooth activity
+        // Sign out button
 
+        Signout = (ImageView) findViewById(R.id.out);
+        Signout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent mainToOut = new Intent(MainScreen.this, Register.class);
+                // DO i need to remove the shared preferences thing?
+                SharedPref sp = new SharedPref(MainScreen.this);
+                sp.DeleteAll();
+                startActivity(mainToOut);
+            }
+        });
         payment = (ImageView) findViewById(R.id.pay);
         payment.setOnClickListener(new View.OnClickListener() {
 

@@ -211,6 +211,7 @@ public class PaymentHistory extends Activity {
         temp = submission;
         JSONObject o = submission.toJSON();
         // volley request update API
+       // Toast.makeText(PaymentHistory.this, o.getString(""), Toast.LENGTH_LONG).show();
         // send submission id, user id, device id, strDate (payment date), price
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, API_Pay, o, new Response.Listener<JSONObject>() {
             @Override

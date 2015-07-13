@@ -122,12 +122,15 @@ public class SharedPref {
 
     }
     static public String getNot_paid() {
-        if (user_data.contains("not_paid")){
+        if (user_data.contains("not_paid")) {
             return user_data.getString("not_paid", null);
 
-        }
-        else return null;
+        } else return null;
 
+    }
+    static public void DeleteAll(){
+        editor.clear();
+        editor.commit();
     }
 
 
