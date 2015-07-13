@@ -22,7 +22,7 @@ public class submission {
     private double price;
 
     private Date submission_date;
-    private Date payment_date;
+    private Date payment_date = null;
 
     private int is_paid;
     // 0=> not paid
@@ -95,15 +95,17 @@ public class submission {
     {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        Date inputDate = new Date();
-        try {
-            inputDate = fmt.parse(payment_date);
-        }catch (ParseException e)
-        {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        if(payment_date!="0") {
+            Date inputDate = new Date();
+            try {
+                inputDate = fmt.parse(payment_date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+            this.payment_date = inputDate;
         }
-        this.payment_date = inputDate;
+
     }
 
      //public void setPayment_dateString ()
