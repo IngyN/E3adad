@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                      self.extract_json(json!)
                      self.refresh_table();
 //                    println("anything!!!!");
-                    self.items.append("Ay shit tayeb?");
+//                    self.items.append("Ay shit tayeb?");
 
                  } else if data.length == 0 && error == nil{
 
@@ -70,7 +70,14 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 
     func extract_json (data : NSString!)
     {
-            let json = JSON(data)
+        
+        var p : NSError?;
+         let jsonData:NSData = data.dataUsingEncoding(NSASCIIStringEncoding)!
+            let json = JSON(data: jsonData, options: nil, error: &p)
+        if p != nil {
+            println("Json parse Error");
+        }
+        else {
             let Submissions = json["results"]
             for (index, object) in Submissions {
                     let submission_id: String = object["submission_id"].stringValue
@@ -86,6 +93,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     println("is_paid = \(is_paid) ")
                     self.items.append("Hello People")
                 }
+        }
     }
   //  func getData(url: String , parameters: [String:AnyObject]){
     func getData(){
