@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */; };
 		BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF9955B1B52882200CC3EEC /* AppDelegate.swift */; };
 		BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF9955D1B52882200CC3EEC /* ViewController.swift */; };
 		BDF995611B52882200CC3EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDF9955F1B52882200CC3EEC /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		BDF995561B52882200CC3EEC /* E3adadiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = E3adadiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF9955A1B52882200CC3EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDF9955B1B52882200CC3EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				BDF9955D1B52882200CC3EEC /* ViewController.swift */,
 				BDF9955F1B52882200CC3EEC /* Main.storyboard */,
 				BDF995621B52882200CC3EEC /* Images.xcassets */,
+				8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */,
 				BDF995641B52882300CC3EEC /* LaunchScreen.xib */,
 				BDF995591B52882200CC3EEC /* Supporting Files */,
 			);
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */,
 				BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */,
 				BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */,
 			);
@@ -407,6 +411,7 @@
 				BDF995771B52882300CC3EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BDF995781B52882300CC3EEC /* Build configuration list for PBXNativeTarget "E3adadiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				BDF9957A1B52882300CC3EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
