@@ -12,16 +12,18 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
    // var items: [String] = ["","E-3adad", "is", "an" , "awesome","application"]
-    var items:Array< String > = Array < String >()
+    var items = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
+        self.items.append("Hello People")
+        PrintAll()
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-            }
+    }
   //  func getData(url: String , parameters: [String:AnyObject]){
     func getData(){
-        let myUrl = NSURL(string: "http://baseetta.com/hatem/e3adad/history.php?=47")
+        let myUrl = NSURL(string: "http://baseetta.com/hatem/e3adad/history.php?user_id=47")
         let request = NSMutableURLRequest(URL:myUrl!);
         request.HTTPMethod = "GET";
         
@@ -32,30 +34,38 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             println("error=\(error)")
             return
         }
-            //Print response
+        //Print response
         println("response = \(response)")
-            //print response body
+        //print response body
         let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
         println("responseString = \(responseString)")
         //NSLog("Response ==> %@", responseString!);
-            
-        
         println("Hello Swift")
+        dispatch_async(dispatch_get_main_queue()) {
+            
         let json = JSON(data: data)
         let Submissions = json["results"]
         for (index, object) in Submissions {
-            let submission_id: String = object["submission_id"].stringValue
-            let reading: String = object["reading"].stringValue
-            let submission_date: String = object["submission_date"].stringValue
-            let is_paid: String = object["is_paid"].stringValue
-            self.items.append(submission_id )
-            println("submission_id = \(submission_id) ")
-            println("reading = \(reading) ")
-            println("submission_date = \(submission_date)) ")
-            println("is_paid = \(is_paid) ")
+                let submission_id: String = object["submission_id"].stringValue
+                let reading: String = object["reading"].stringValue
+                let submission_date: String = object["submission_date"].stringValue
+                let is_paid: String = object["is_paid"].stringValue
+                self.items.append(reading)
+                self.items.append(submission_date)
+                self.items.append(is_paid)
+                println("submission_id = \(submission_id) ")
+                println("reading = \(reading) ")
+                println("submission_date = \(submission_date)) ")
+                println("is_paid = \(is_paid) ")
+                self.items.append("Hello People")
+            }
+          }
         }
-        }
+        // self.items.append("Hello People")
         task.resume();
+    }
+    func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!){
+        NSLog("didReceiveResponse")
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
@@ -64,14 +74,17 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]
         return cell
-
     }
-    /*
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("You selected cell #\(indexPath.row)!")
-        
-    }*/
-
+    }
+    func PrintAll(){
+        //let t = items.count
+        for i in items{
+            println(i)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,37 +92,4 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 
 
 }
-//Parse the JSON Object
-/*    let json = JSON(data:data)
-let Submissions = json["results"]
-for obj in Submissions
-{
-let submission_id = obj["submission_id"].stringValue
-let reading = obj["reading"].stringValue
-let submission_date = obj["submission_date"].stringValue
-let is_paid = obj["is_paid"].stringValue
-//println( "id: \(id) name: \(name)" )
-}
-//let reading = obj[0]["reading"].string {
-}
-for (index: String, subJson: JSON) in json {
-//Do something you want
-}*/
-/*
-s.setId(String.valueOf(obj.getInt("submission_id")));
-s.setReading(String.valueOf(obj.getInt("reading")));
-s.setSubmission_date(String.valueOf(obj.get("submission_date")));
-s.setIs_paid(obj.getInt("is_paid"));
-s.setPayment_date(obj.getString("submission_date"));
 
-+ " /" + reading+ "/" + submission_date + "/" + is_paid)
-*/
-
-
-/*   var err: NSError?
-var myJSON = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error:&err) as? NSDictionary
-if let parseJSON = myJSON {
-var firstNameValue = parseJSON["results"]; anyObject?
-//  var first = firstNameValue["reading"] as? String
-println("firstNameValue: \(first)")
-}*/
