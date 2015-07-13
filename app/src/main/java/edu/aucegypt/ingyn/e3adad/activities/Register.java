@@ -26,26 +26,25 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 import edu.aucegypt.ingyn.e3adad.models.user;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
-public class SignIN extends Activity {
+public class Register extends Activity {
     private EditText nationalID_in,serialNumber_in,email_in;
-    private Button login_user;
+    private Button register_user;
     private String nationalID,serialNumber,email;
-    private String API_URL = "http://baseetta.com/hatem/e3adad/login.php";
-    private String user_id,device_id, last_s_id, last_submission, last_paid, last_price, last_reading;
-    public static Activity SIGNIN;
+    private String API_URL = "http://baseetta.com/hatem/e3adad/register.php";
+    private String user_id,device_id;
+    public static Activity REGISTER;
     static boolean active = false;
     private TextView redirect;
     user newUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        SIGNIN = this;
+        setContentView(R.layout.activity_register);
+        REGISTER = this;
         active = true;
-
-        if(Register.active){
-            Register.active = false;
-            Register.REGISTER.finish();
+        if(SignIN.active){
+            SignIN.active = false;
+            SignIN.SIGNIN.finish();
         }
         ActionBar bar = this.getActionBar();
 
@@ -63,25 +62,25 @@ public class SignIN extends Activity {
         nationalID_in = (EditText)findViewById(R.id.national_id);
         serialNumber_in = (EditText)findViewById(R.id.serial_number);
         email_in = (EditText)findViewById(R.id.email);
+
         redirect = (TextView) findViewById(R.id.redirect);
         redirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent regToMain = new Intent(SignIN.this, Register.class);
+                Intent regToMain = new Intent(Register.this, SignIN.class);
                 startActivity(regToMain);
             }
         });
 
-
-        login_user = (Button) findViewById(R.id.login);
-        login_user.setOnClickListener(new View.OnClickListener() {
+        register_user = (Button) findViewById(R.id.register);
+        register_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nationalID = nationalID_in.getText().toString();
                 serialNumber = serialNumber_in.getText().toString();
                 email = email_in.getText().toString();
                 if (nationalID.length() != 14) {
-                    nationalID_in.setError("Wrong Nation ID");
+                    nationalID_in.setError("Wrong National ID");
 //                    Toast.makeText(SignIN.this, "Wrong National ID", Toast.LENGTH_SHORT).show();
                 }
                 if(serialNumber.length() != 10) {
@@ -97,57 +96,40 @@ public class SignIN extends Activity {
         });
 
     }
-
-
-
     private void RegisterNewUser(){
 
-       newUser = new user(serialNumber,nationalID,email);
+        newUser = new user(serialNumber,nationalID,email);
 
         // POST Request to send Data to the database
         JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL, newUser.toJSON() ,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //Toast.makeText(SignIN.this, response.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Register.this, response.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("Volley response Sign In", response.toString());
                 try {
-
-
                     user_id = String.valueOf(response.getInt("user_id"));
                     device_id = String.valueOf(response.getInt("device_id"));
 
                     newUser.setDevice_id(device_id);
                     newUser.setId(user_id);
 
-                    last_s_id = String.valueOf(response.getString("last_s_id"));
-                    last_submission = String.valueOf(response.getString("last_submission"));
-                    last_price = String.valueOf(response.getString("last_price"));
-                    last_reading = String.valueOf(response.getString("last_reading"));
-                    last_paid = String.valueOf(response.getString("last_paid"));
-
-
-                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id, last_s_id, last_submission, last_price, last_reading, last_paid);
+                    SharedPref s = new SharedPref(Register.this, user_id, device_id);
                     s.saveData();
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 if(!(response.has("ERROR"))) {
-                    Intent regToMain = new Intent(SignIN.this, MainScreen.class);
+                    Intent regToMain = new Intent(Register.this, MainScreen.class);
                     startActivity(regToMain);
-
-                }else Toast.makeText(SignIN.this, "This user doesn't exist. Please make sure you typed all your info correctly. ", Toast.LENGTH_LONG).show();
+                }else Toast.makeText(Register.this, "This user already exists.", Toast.LENGTH_LONG).show();
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(SignIN.this, "Network error: " + error.toString(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(Register.this, "Network error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

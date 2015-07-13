@@ -62,6 +62,11 @@
 
         </activity>
         <activity
+            android:name=".activities.Register"
+            android:label="@string/app_name" >
+
+        </activity>
+        <activity
             android:name=".activities.PaymentAction"
             android:label="@string/title_activity_payment" >
         </activity>
