@@ -172,20 +172,21 @@ public class submission {
     }
 
     // JSON conversion
-    JSONObject toJSON (){
+    public JSONObject toJSON (){
         JSONObject obj = new JSONObject();
 
         try{
-
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             obj.put("id", this.getId());
             obj.put("user_id", this.getUser_id());
             obj.put("transaction_id", this.getTransaction_id());
             obj.put("device_id", this.getDevice_id());
             obj.put("reading", this.getReading());
             obj.put("price", this.getPrice());
-            obj.put("submission_date", this.getSubmission_dateString());
+            obj.put("submission_date", sdf.format(submission_date));
             obj.put("is_paid", this.getIs_paidInt());
-            obj.put("payment_date", this.getPayment_dateString());
+
+            obj.put("payment_date",sdf.format(payment_date));
 
         }catch (JSONException e){
             e.printStackTrace();

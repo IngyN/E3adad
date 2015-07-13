@@ -28,7 +28,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 
 
 public class MainScreen extends Activity {
-    private ImageButton take_photo;
+    private ImageButton take_photo,Bluetooth_pair;
     private ImageView payment,statistics;
     private TextView last_submission,last_payment;
     Button pay;
@@ -102,6 +102,9 @@ public class MainScreen extends Activity {
                 TakePhoto(v);
             }
         });
+
+        // bluetooth activity
+
         payment = (ImageView) findViewById(R.id.pay);
         payment.setOnClickListener(new View.OnClickListener() {
 

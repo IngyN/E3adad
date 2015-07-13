@@ -65,7 +65,7 @@ public class HistoryAdapter extends BaseAdapter {
         submission s = SubmissionList.get(position);
 
         // Reading
-        price.setText(String.valueOf(s.getReading())+" EGP");
+        price.setText(String.valueOf(s.getPrice())+" EGP");
         Drawable myIcon = convertView.getResources().getDrawable(R.drawable.status_button);
 
         // Payment Status

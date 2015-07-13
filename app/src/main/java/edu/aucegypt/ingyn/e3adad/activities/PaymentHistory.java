@@ -44,11 +44,13 @@ import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 public class PaymentHistory extends Activity {
 
     final private String API_URL = "http://baseetta.com/hatem/e3adad/history.php";
+    final static private String API_Pay = "http://baseetta.com/hatem/e3adad/pay.php";
 
     private List<submission> submissionList = new ArrayList<>();
     private ListView listView;
     private HistoryAdapter adapter;
     PayPalConfiguration config = new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK).clientId("<YOUR_CLIENT_ID>");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,8 @@ public class PaymentHistory extends Activity {
         startService(intent);
         //A ProgressDialog object
         final ProgressDialog progress = new ProgressDialog(PaymentHistory.this);
-        progress.setMessage(" Loading ");progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setMessage(" Loading ");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.setIndeterminate(true);
         progress.show();
 
@@ -71,7 +74,7 @@ public class PaymentHistory extends Activity {
 //        w.setStatusBarColor(getResources().getColor(R.color.darkerprimary));
 //        w.setNavigationBarColor(getResources().getColor(R.color.darkerprimary));
 
-        String user_id =SharedPref.getUser_id();
+        String user_id = SharedPref.getUser_id();
 
 
         StringBuilder paramsBuilder = new StringBuilder();
@@ -93,7 +96,7 @@ public class PaymentHistory extends Activity {
                         if (response.has("error")) {
                             progress.dismiss();
                             Toast.makeText(PaymentHistory.this, "Error: " + response.optString("error", ""), Toast.LENGTH_LONG).show();
-                        }else {
+                        } else {
                             progress.dismiss();
                             publish(response);
                         }
@@ -111,21 +114,21 @@ public class PaymentHistory extends Activity {
 
         QueueSingleton.getInstance(this).addToRequestQueue(request);
     }
+
     public void onDestroy() {
         stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
     }
 
-    public void publish(JSONObject response)
-    {
+    public void publish(JSONObject response) {
 
         //submissionList.clear();
 
         try {
 
-            JSONArray arr =  response.getJSONArray("results");
+            JSONArray arr = response.getJSONArray("results");
 
-            if(arr.length() == 0)
+            if (arr.length() == 0)
                 Toast.makeText(PaymentHistory.this, "No submissions found.", Toast.LENGTH_LONG).show();
 
             submissionList.clear();
@@ -168,15 +171,15 @@ public class PaymentHistory extends Activity {
 
                     double price = submissionList.get(position).getPrice();
 
-                    if(price>0) {
+                    if (price > 0) {
 
-                        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(submissionList.get(position).getPrice())), "USD", "your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
-
-                        Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
-
-                        // send the same configuration for restart resiliency
-                        i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-                        i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+//                        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(submissionList.get(position).getPrice())), "USD", "your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
+//
+//                        Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
+//
+//                        // send the same configuration for restart resiliency
+//                        i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+//                        i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
                         submissionList.get(position).setIs_paid(2);
 
                         //    SharedPref s = new SharedPref(PaymentHistory.this,strDate);
@@ -187,14 +190,12 @@ public class PaymentHistory extends Activity {
                         String strDate = sdf.format(c.getTime());
                         submissionList.get(position).setPayment_date(strDate);
 
-                        PaymentHistory.updateDataBase(submissionList.get(position));
+                        updateDataBase(submissionList.get(position));
                         // need for an extra API to update paid submissions.
 
-                        startActivityForResult(i, 0);
+//                        startActivityForResult(i, 0);
 
-                    }
-
-                    else {
+                    } else {
 
                         Toast.makeText(PaymentHistory.this, "Error in price amount", Toast.LENGTH_LONG).show();
                     }
@@ -204,12 +205,46 @@ public class PaymentHistory extends Activity {
 
         });
     }
+    static submission temp;
+    private void updateDataBase(submission submission) {
 
-    private static void updateDataBase(submission submission) {
-
-
+        temp = submission;
+        JSONObject o = submission.toJSON();
         // volley request update API
-        // send submission id, user id, device id, strDate (payment date)
+        // send submission id, user id, device id, strDate (payment date), price
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, API_Pay, o, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response.has("ERROR")) {
+                    Toast.makeText(PaymentHistory.this, "Error in updating database please try again later", Toast.LENGTH_LONG).show();
+                    Log.e("Error update database", response.toString());// Toast.makeText(PaymentHistory, "Error: " + response.optString("error", ""), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(PaymentHistory.this, "Records successfully updated", Toast.LENGTH_SHORT).show();
+                    // Start Paypal
+                    if (temp.getPrice()>0)
+                    {
+                        Toast.makeText(PaymentHistory.this, "Shiiiiiiiiiit", Toast.LENGTH_LONG).show();
+                    }
+                    PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(temp.getPrice())), "USD", "Your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
+
+                    Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
+
+                    // send the same configuration for restart resiliency
+                    i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                    i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+                    startActivityForResult(i, 0);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                // progress.dismiss();
+                Log.d("Error Volley", error.toString());
+
+                Toast.makeText(PaymentHistory.this, "Network error: " + error.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -235,8 +270,9 @@ public class PaymentHistory extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
             if (confirm != null) {
@@ -250,11 +286,9 @@ public class PaymentHistory extends Activity {
                     Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
                 }
             }
-        }
-        else if (resultCode == Activity.RESULT_CANCELED) {
+        } else if (resultCode == Activity.RESULT_CANCELED) {
             Log.i("paymentExample", "The user canceled.");
-        }
-        else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
             Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
         }
     }
