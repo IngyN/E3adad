@@ -69,17 +69,13 @@ public class MainScreen extends Activity {
             last_submission.append(" on ");
             last_submission.append(SharedPref.getLast_submission());
 
-            if((SharedPref.getLast_paid()) ==  "0")
+            if((SharedPref.getNot_paid()) ==  "0")
             {
-                last_payment.setText("You have unpaid payments.");
-                last_payment.setTextColor(Color.RED);
-            }else if((SharedPref.getLast_paid()) ==  "1")
-            {
-                last_payment.setText("You have a pending payment.");
-                last_payment.setTextColor(Color.YELLOW);
+                last_payment.setText("You have " + SharedPref.getNot_paid() +  " unpaid payments.");
+                last_payment.setTextColor(this.getResources().getColor(R.color.late));
             }else{
                 last_payment.setText("You don't have any pending payments.");
-                last_payment.setTextColor(Color.parseColor("#12585B"));
+                last_payment.setTextColor(this.getResources().getColor(R.color.primary));
             }
 
 

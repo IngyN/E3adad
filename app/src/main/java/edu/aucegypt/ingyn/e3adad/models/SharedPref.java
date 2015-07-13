@@ -14,9 +14,10 @@ public class SharedPref {
 
     static String last_s_id;
     static String last_submission;
-    static String last_paid;
     static String last_price;
     static String last_reading;
+
+    static String not_paid;
 
     static SharedPreferences user_data;
     static SharedPreferences.Editor editor ;
@@ -35,7 +36,7 @@ public class SharedPref {
     }
 
     // User and last submission constructor (used in SignIN)
-    public SharedPref(Context context,String user_id,String device_id, String last_s_id, String last_submission, String last_price, String last_reading, String last_paid){
+    public SharedPref(Context context,String user_id,String device_id, String last_s_id, String last_submission, String last_price, String last_reading, String not_paid){
         SharedPref.context = context;
         SharedPref.user_id = user_id;
         SharedPref.device_id = device_id;
@@ -44,7 +45,7 @@ public class SharedPref {
         SharedPref.last_submission = last_submission;
         SharedPref.last_price = last_price;
         SharedPref.last_reading = last_reading;
-        SharedPref.last_paid = last_paid;
+        SharedPref.not_paid = not_paid;
 
         user_data = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = user_data.edit();
@@ -58,7 +59,7 @@ public class SharedPref {
         SharedPref.last_submission = last_submission;
         SharedPref.last_price = last_price;
         SharedPref.last_reading = last_reading;
-        SharedPref.last_paid = last_paid;
+        SharedPref.not_paid = not_paid;
 
         user_data = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = user_data.edit();
@@ -78,14 +79,14 @@ public class SharedPref {
          editor.commit();
          editor.putString("last_reading", last_reading);
          editor.commit();
-         editor.putString("last_paid", last_paid);
+         editor.putString("not_paid", not_paid);
          editor.commit();
     }
 
     static public String getUser_id(){
         if (user_data.contains("user_id")) {
-            user_id = user_data.getString("user_id", null);
-            return user_id;
+            return  user_data.getString("user_id", null);
+
         }
         else
         {
@@ -94,40 +95,36 @@ public class SharedPref {
     }
     static public String getDevice_id() {
         if (user_data.contains("device_id")){
-            device_id = user_data.getString("device_id", null);
-            return device_id;
+            return user_data.getString("device_id", null);
         }
         else return null;
 
     }
     static public String getLast_submission() {
         if (user_data.contains("last_submission")){
-            last_submission = user_data.getString("last_submission", null);
-            return last_submission;
+            return user_data.getString("last_submission", null);
         }
         else return null;
 
     }
     static public String getLast_reading() {
         if (user_data.contains("last_reading")){
-            last_reading = user_data.getString("last_reading", null);
-            return last_reading;
+            return  user_data.getString("last_reading", null);
         }
         else return null;
 
     }
     static public String getLast_price() {
         if (user_data.contains("last_price")){
-            last_reading = user_data.getString("last_price", null);
-            return last_reading;
+            return user_data.getString("last_price", null);
         }
         else return null;
 
     }
-    static public String getLast_paid() {
-        if (user_data.contains("last_paid")){
-            last_reading = user_data.getString("last_paid", null);
-            return last_reading;
+    static public String getNot_paid() {
+        if (user_data.contains("not_paid")){
+            return user_data.getString("not_paid", null);
+
         }
         else return null;
 
