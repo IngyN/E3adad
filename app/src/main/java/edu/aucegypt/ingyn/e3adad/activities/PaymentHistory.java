@@ -123,7 +123,6 @@ public class PaymentHistory extends Activity {
 
         try {
 
-
             JSONArray arr =  response.getJSONArray("results");
 
             if(arr.length() == 0)
@@ -166,7 +165,7 @@ public class PaymentHistory extends Activity {
                 }
                 else if (submissionList.get(position).isLate()) {
 
-                    PayPalPayment payment = new PayPalPayment(new BigDecimal("50"), "USD", "your Consumption:",
+                    PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(submissionList.get(position).getPrice())), "EGP", "your Consumption:",
                             PayPalPayment.PAYMENT_INTENT_SALE);
 
                     Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
@@ -181,6 +180,8 @@ public class PaymentHistory extends Activity {
                     String strDate = sdf.format(c.getTime());
                     SharedPref s = new SharedPref(PaymentHistory.this,strDate);
                     s.saveLastUpdate();
+                    // submissionList.get(position).updateDataBase()
+                    // need for an extra API to updte paid submissions.
 
                     startActivityForResult(i, 0);
                 }
