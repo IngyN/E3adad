@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="actionBar" parent= "android:Widget.ActionBar">
 
         <item name="android:colorPrimary">@color/darkprimary</item>
@@ -16,6 +16,9 @@
 
         <item name="android:titleTextStyle">@style/actionBar.text</item>
         <item name="titleTextStyle">@style/actionBar.text</item>
+
+        <item name="android:actionMenuTextColor">@color/text_icons</item>
+        <item name="actionMenuTextColor">@color/text_icons</item>
 
     </style>
 

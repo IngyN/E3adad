@@ -39,6 +39,8 @@
 
         <item name ="android:navigationBarColor">@color/darkerprimary</item>
         <!--<item name ="navigationBarColor">@color/darkerprimary</item>-->
+        <item name="android:actionModeBackground">@color/darkprimary</item>
+        <item name="actionModeBackground">@color/darkprimary</item>
 
     </style>
 </resources>
