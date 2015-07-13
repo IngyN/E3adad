@@ -8,7 +8,7 @@
     <color name="accent" >#03A9F4</color>
     <color name="primarytext" >#212121</color>
     <color name="secondarytext" >#727272</color>
-    <color name="divider" >#B6B6B6</color>
+    <color name="divider" >#dad3d3d3</color>
     <color name="windowBack" >#fff4f4f4</color>
     <color name= "navColor">#ff014441</color>
 </resources>

@@ -42,37 +42,61 @@
         android:clickable="true"
         android:layout_marginBottom="10dp" />
 
-    <ImageButton
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:id="@+id/take_photo"
-        android:scaleType="fitXY"
-        android:src="@drawable/main"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="116dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomenu"
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Loading Last Submission information..."
-        android:id="@+id/last_submission"
-        android:gravity="center|center_horizontal"
-        android:layout_below="@+id/take_photo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/bt"
+            android:scaleType="fitXY"
+            android:src="@drawable/main3"
+            android:background="@android:color/transparent"
+            android:layout_above="@+id/last_submission"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/last_payment"
-        android:text="Loading Payment Status"
-        android:layout_below="@+id/last_submission"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Loading Last Submission information..."
+            android:id="@+id/last_submission"
+            android:gravity="center|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/last_payment"
+            android:text="Loading Payment Status"
+            android:layout_above="@+id/take_photo"
+            android:layout_toStartOf="@+id/pay"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/take_photo"
+            android:src="@drawable/main"
+            android:scaleType="fitXY"
+            android:background="#00eff8eb"
+            android:layout_above="@+id/bottomenu"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,14 +120,5 @@
         android:layout_marginRight="15dp"
         android:layout_alignTop="@+id/textView"
         android:layout_toStartOf="@+id/pay" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/estimate"
-        android:layout_alignBottom="@+id/last_payment"
-        android:textColor="@color/background_material_dark"
-        android:layout_alignTop="@+id/last_payment"
-        android:layout_alignEnd="@+id/last_submission" />
 
 </RelativeLayout>

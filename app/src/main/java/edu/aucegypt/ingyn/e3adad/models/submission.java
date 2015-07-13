@@ -78,7 +78,7 @@ public class submission {
 
     public void setSubmission_date(String submission_date)       //takes string and stores it as date
     {
-        SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Date inputDate = new Date();
         try {
@@ -93,7 +93,7 @@ public class submission {
 
     public void setPayment_date(String payment_date)       //takes string and stores it as date
     {
-        SimpleDateFormat fmt = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Date inputDate = new Date();
         try {
@@ -106,6 +106,7 @@ public class submission {
         this.payment_date = inputDate;
     }
 
+     //public void setPayment_dateString ()
 
     public void setIs_paid(int is_paid)
     {
@@ -148,16 +149,19 @@ public class submission {
 
     public String getSubmission_dateString()       //return reg_Date as a string
     {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yy");
         String dateString = fmt.format(this.submission_date);
         return dateString;
     }
 
     public String getPayment_dateString()       //return reg_Date as a string
     {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateString = fmt.format(this.payment_date);
-        return dateString;
+        if(payment_date!= null) {
+            SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yy");
+            String dateString = fmt.format(this.payment_date);
+            return dateString;
+        }
+        else return "   - -  ";
     }
 
     public int getIs_paid() { return this.is_paid;}

@@ -119,7 +119,7 @@ public class PaymentHistory extends Activity {
     public void publish(JSONObject response)
     {
 
-        submissionList.clear();
+        //submissionList.clear();
 
         try {
 
@@ -139,8 +139,11 @@ public class PaymentHistory extends Activity {
                 s.setReading(String.valueOf(obj.getInt("reading")));
                 s.setSubmission_date(String.valueOf(obj.get("submission_date")));
                 s.setIs_paid(obj.getInt("is_paid"));
-                s.setPayment_date(obj.getString("submission_date"));
-
+                //s.setPayment_date(obj.getString("submission_date"));
+                s.setPrice(Double.parseDouble(obj.getString("price")));
+                s.setId(obj.getString("submission_id"));
+                s.setUser_id(SharedPref.getUser_id());
+                s.setDevice_id(SharedPref.getDevice_id());
 
                 submissionList.add(s);
 
@@ -159,36 +162,55 @@ public class PaymentHistory extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (submissionList.get(position).isPaid()) {
                     Toast.makeText(PaymentHistory.this, "You already paid for this", Toast.LENGTH_SHORT).show();
-                }
-                else if (submissionList.get(position).isPending()) {
+                } else if (submissionList.get(position).isPending()) {
                     Toast.makeText(PaymentHistory.this, "The price is not finalized yet", Toast.LENGTH_SHORT).show();
-                }
-                else if (submissionList.get(position).isLate()) {
+                } else if (submissionList.get(position).isLate()) {
 
-                    PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(submissionList.get(position).getPrice())), "EGP", "your Consumption:",
-                            PayPalPayment.PAYMENT_INTENT_SALE);
+                    double price = submissionList.get(position).getPrice();
 
-                    Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
+                    if(price>0) {
 
-                    // send the same configuration for restart resiliency
-                    i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-                    i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-                    submissionList.get(position).setIs_paid(2);
+                        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(submissionList.get(position).getPrice())), "USD", "your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
 
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
-                    String strDate = sdf.format(c.getTime());
-                    SharedPref s = new SharedPref(PaymentHistory.this,strDate);
-                    s.saveLastUpdate();
-                    // submissionList.get(position).updateDataBase()
-                    // need for an extra API to updte paid submissions.
+                        Intent i = new Intent(PaymentHistory.this, PaymentActivity.class);
 
-                    startActivityForResult(i, 0);
+                        // send the same configuration for restart resiliency
+                        i.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                        i.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+                        submissionList.get(position).setIs_paid(2);
+
+                        //    SharedPref s = new SharedPref(PaymentHistory.this,strDate);
+                        //   s.saveLastUpdate();
+
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
+                        String strDate = sdf.format(c.getTime());
+                        submissionList.get(position).setPayment_date(strDate);
+
+                        PaymentHistory.updateDataBase(submissionList.get(position));
+                        // need for an extra API to update paid submissions.
+
+                        startActivityForResult(i, 0);
+
+                    }
+
+                    else {
+
+                        Toast.makeText(PaymentHistory.this, "Error in price amount", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
 
 
         });
+    }
+
+    private static void updateDataBase(submission submission) {
+
+
+        // volley request update API
+        // send submission id, user id, device id, strDate (payment date)
+
     }
 
 
