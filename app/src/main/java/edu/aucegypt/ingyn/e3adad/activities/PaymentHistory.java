@@ -142,7 +142,7 @@ public class PaymentHistory extends Activity {
                 s.setReading(String.valueOf(obj.getInt("reading")));
                 s.setSubmission_date(String.valueOf(obj.get("submission_date")));
                 s.setIs_paid(obj.getInt("is_paid"));
-                //s.setPayment_date(obj.getString("submission_date"));
+                s.setPayment_date(obj.getString("payment_date"));
                 s.setPrice(Double.parseDouble(obj.getString("price")));
                 s.setId(obj.getString("submission_id"));
                 s.setUser_id(SharedPref.getUser_id());
@@ -191,6 +191,7 @@ public class PaymentHistory extends Activity {
                         submissionList.get(position).setPayment_date(strDate);
 
                         updateDataBase(submissionList.get(position));
+
                         // need for an extra API to update paid submissions.
 
 //                        startActivityForResult(i, 0);
@@ -206,26 +207,30 @@ public class PaymentHistory extends Activity {
         });
     }
     static submission temp;
-    private void updateDataBase(submission submission) {
+    private void updateDataBase(submission Submission) {
 
-        temp = submission;
-        JSONObject o = submission.toJSON();
+        temp = Submission;
+        Toast.makeText(PaymentHistory.this, Submission.toJSON().toString(), Toast.LENGTH_SHORT).show();
+        JSONObject o = new JSONObject();
+        int s = 0;
+        try {
+            s= Submission.toJSON().getInt("id");
+            o.put("submission_id" , s);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         // volley request update API
        // Toast.makeText(PaymentHistory.this, o.getString(""), Toast.LENGTH_LONG).show();
         // send submission id, user id, device id, strDate (payment date), price
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, API_Pay, o, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                if (response.has("ERROR")) {
+                Toast.makeText(PaymentHistory.this, response.toString(), Toast.LENGTH_LONG).show();
+                if (response.has("error") ) {
                     Toast.makeText(PaymentHistory.this, "Error in updating database please try again later", Toast.LENGTH_LONG).show();
                     Log.e("Error update database", response.toString());// Toast.makeText(PaymentHistory, "Error: " + response.optString("error", ""), Toast.LENGTH_LONG).show();
-                } else {
+                }else{
                     Toast.makeText(PaymentHistory.this, "Records successfully updated", Toast.LENGTH_SHORT).show();
-                    // Start Paypal
-                    if (temp.getPrice()>0)
-                    {
-                        Toast.makeText(PaymentHistory.this, "Shiiiiiiiiiit", Toast.LENGTH_LONG).show();
-                    }
 
                     PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(temp.getPrice())), "USD", "Your Consumption:", PayPalPayment.PAYMENT_INTENT_SALE);
 

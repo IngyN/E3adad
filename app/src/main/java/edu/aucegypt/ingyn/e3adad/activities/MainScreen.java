@@ -121,6 +121,14 @@ public class MainScreen extends Activity {
             }
 
         });
+        // Bluetooth Activity
+        Bluetooth_pair = (ImageButton) findViewById(R.id.bt);
+        Bluetooth_pair.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
         // get action bar
        ActionBar actionBar = getActionBar();
