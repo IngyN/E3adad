@@ -235,7 +235,7 @@ public class MainScreen extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.logout:
-                Intent mainToOut = new Intent(MainScreen.this, Register.class);
+                Intent mainToOut = new Intent(MainScreen.this, SignIN.class);
                 // DO i need to remove the shared preferences thing?
                 SharedPref sp = new SharedPref(MainScreen.this);
                 SharedPref.DeleteAll();
