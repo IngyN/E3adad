@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 //import SwiftyJSON
 
 // class CustomTableViewCell: UITableViewCell{
@@ -15,15 +16,16 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var tableView: UITableView!
    // var items: [String] = ["","E-3adad", "is", "an" , "awesome","application"]
     var items = [String]()
+    var colors = [Int]()
     var api_url = "http://baseetta.com/hatem/e3adad/history.php?user_id=47"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         get_data(api_url);
-        self.items.append("Hello People")
-        PrintAll()
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+       /// self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        var nib = UINib(nibName: "customcellTableViewCell", bundle:nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
     }
 
     func get_data (url:String)
@@ -83,19 +85,19 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     let submission_id: String = object["submission_id"].stringValue
                     let reading: String = object["reading"].stringValue
                     let submission_date: String = object["submission_date"].stringValue
-                    let is_paid: String = object["is_paid"].stringValue
-                    self.items.append(reading)
-                    self.items.append(submission_date)
-                    self.items.append(is_paid)
+                    let is_paid: Int = object["is_paid"].intValue
+                    let month = submission_date.substringWithRange(Range<String.Index>(start: advance(submission_date.startIndex, 5), end: advance(submission_date.startIndex, 7))) //"llo, playgroun"
+                
+                    let t = "\(getMonth(month))    \(submission_date)    \(reading)KW"
+                    self.items.append(t)
+                    self.colors.append(is_paid)
                     println("submission_id = \(submission_id) ")
                     println("reading = \(reading) ")
                     println("submission_date = \(submission_date)) ")
                     println("is_paid = \(is_paid) ")
-                    self.items.append("Hello People")
                 }
         }
     }
-  //  func getData(url: String , parameters: [String:AnyObject]){
     func getData(){
         let myUrl = NSURL(string: "http://baseetta.com/hatem/e3adad/history.php?user_id=47")
         let request = NSMutableURLRequest(URL:myUrl!);
@@ -145,19 +147,41 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         return self.items.count;
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+     /*   var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]
+   /*     if(self.colors[indexPath.row] == 0 ){
+            cell.backgroundColor = UIColor.redColor()
+        }
+        else if(self.colors[indexPath.row] == 1 ){
+            cell.backgroundColor = UIColor.grayColor()
+        }
+        else if(self.colors[indexPath.row] == 2 ){
+            cell.backgroundColor = UIColor.greenColor()
+        } */ 
+*/
+        var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! customcellTableViewCell
+        cell.cellLabel.text = self.items[indexPath.row]
+        if(self.colors[indexPath.row] == 0 ){
+            cell.cellImage.image = UIImage (named: "red")
+        }
+        else if(self.colors[indexPath.row] == 1 ){
+            cell.cellImage.image = UIImage(named: "red")
+        }
+        else if(self.colors[indexPath.row] == 2 ){
+            cell.cellImage.image = UIImage(named: "red")
+        }
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("You selected cell #\(indexPath.row)!")
     }
-    func PrintAll(){
-        //let t = items.count
-        for i in items{
-            println(i)
+    func getMonth(dateAll: String)->String{
+        var month: String = " "
+        if(dateAll=="07"){
+            month = "July"
         }
+        return month
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
