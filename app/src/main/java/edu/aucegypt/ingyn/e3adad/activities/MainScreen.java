@@ -31,6 +31,10 @@ public class MainScreen extends Activity {
     private ImageView payment,statistics;
     private TextView last_submission,last_payment;
     Button pay;
+
+    public static Activity MAIN;
+    static boolean active = false;
+
     final int REQUEST_PHOTO = 1;
     final int PIC_CROP = 2;
   //  final int startDay = 20, endDay = 31;
@@ -41,6 +45,8 @@ public class MainScreen extends Activity {
         setContentView(R.layout.activity_main);
 
 
+        active=true;
+        MAIN = this;
 
         if(SignIN.active){
             SignIN.active = false;

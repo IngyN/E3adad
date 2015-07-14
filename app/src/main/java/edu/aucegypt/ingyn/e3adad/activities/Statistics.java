@@ -1,15 +1,10 @@
 package edu.aucegypt.ingyn.e3adad.activities;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.JavascriptInterface;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +21,6 @@ import java.net.URLEncoder;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.models.SharedPref;
-import edu.aucegypt.ingyn.e3adad.models.user;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 public class Statistics extends Activity{
@@ -85,7 +79,12 @@ public class Statistics extends Activity{
                                 tAvgCost.setText(AvgCost + " LE");
                                 tAvgCons.setText(AvgCons + " kW");
                                 tTotalCons.setText(TotalCons + " kW");
+
+                                int progressINT = Integer.parseInt(progress);
+
+                                if(progressINT > 0)
                                 tProgress.setText(progress + " % better / " + diff + " kW saved");
+                                else tProgress.setText(progress + " % worse / " + diff + " kW wasted");
 
 
                             } catch (JSONException e) {
