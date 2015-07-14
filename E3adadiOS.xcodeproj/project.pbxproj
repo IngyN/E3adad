@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7A2BF55B1B5480F0006E80F6 /* Customcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2BF55A1B5480F0006E80F6 /* Customcell.xib */; };
 		7A2BF55D1B548299006E80F6 /* customcellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2BF55C1B548299006E80F6 /* customcellTableViewCell.swift */; };
-		7A2BF55F1B548703006E80F6 /* red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7A2BF55E1B548703006E80F6 /* red.jpg */; };
 		8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */; };
 		BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF9955B1B52882200CC3EEC /* AppDelegate.swift */; };
 		BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF9955D1B52882200CC3EEC /* ViewController.swift */; };
@@ -35,7 +34,6 @@
 /* Begin PBXFileReference section */
 		7A2BF55A1B5480F0006E80F6 /* Customcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Customcell.xib; sourceTree = "<group>"; };
 		7A2BF55C1B548299006E80F6 /* customcellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customcellTableViewCell.swift; sourceTree = "<group>"; };
-		7A2BF55E1B548703006E80F6 /* red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpg; sourceTree = "<group>"; };
 		8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		BDF995561B52882200CC3EEC /* E3adadiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = E3adadiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF9955A1B52882200CC3EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,16 +92,15 @@
 				BDF9955B1B52882200CC3EEC /* AppDelegate.swift */,
 				BDF9955D1B52882200CC3EEC /* ViewController.swift */,
 				BDF9955F1B52882200CC3EEC /* Main.storyboard */,
-				7A2BF55E1B548703006E80F6 /* red.jpg */,
 				BDF995621B52882200CC3EEC /* Images.xcassets */,
 				8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */,
 				F42C49DF1B5491F000A74A10 /* HomeViewController.swift */,
 				F42C49E01B5491F000A74A10 /* SignInViewController.swift */,
 				F42C49E11B5491F000A74A10 /* RegisterViewController.swift */,
 				BDF995641B52882300CC3EEC /* LaunchScreen.xib */,
-				BDF995591B52882200CC3EEC /* Supporting Files */,
 				7A2BF55A1B5480F0006E80F6 /* Customcell.xib */,
 				7A2BF55C1B548299006E80F6 /* customcellTableViewCell.swift */,
+				BDF995591B52882200CC3EEC /* Supporting Files */,
 			);
 			path = E3adadiOS;
 			sourceTree = "<group>";
@@ -216,7 +213,6 @@
 				BDF995611B52882200CC3EEC /* Main.storyboard in Resources */,
 				BDF995661B52882300CC3EEC /* LaunchScreen.xib in Resources */,
 				7A2BF55B1B5480F0006E80F6 /* Customcell.xib in Resources */,
-				7A2BF55F1B548703006E80F6 /* red.jpg in Resources */,
 				BDF995631B52882200CC3EEC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

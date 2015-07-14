@@ -4,11 +4,10 @@
 //
 //  Created by Ingy on 7/12/15.
 //  Copyright (c) 2015 Ingy. All rights reserved.
-//
 
+// History screen
 import UIKit
 import Foundation
-//import SwiftyJSON
 
 // class CustomTableViewCell: UITableViewCell{
     
@@ -23,9 +22,9 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         super.viewDidLoad()
         get_data(api_url);
         // Do any additional setup after loading the view, typically from a nib.
-       /// self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        var nib = UINib(nibName: "customcellTableViewCell", bundle:nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+  //     var nib = UINib(nibName: "customcellTableViewCell", bundle:nil)
+    //   tableView.registerNib(nib, forCellReuseIdentifier: "cell")
     }
 
     func get_data (url:String)
@@ -147,7 +146,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         return self.items.count;
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     /*   var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]
    /*     if(self.colors[indexPath.row] == 0 ){
             cell.backgroundColor = UIColor.redColor()
@@ -157,9 +156,8 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         }
         else if(self.colors[indexPath.row] == 2 ){
             cell.backgroundColor = UIColor.greenColor()
-        } */ 
-*/
-        var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as customcellTableViewCell
+        } */
+    /*    var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as customcellTableViewCell
         cell.cellLabel.text = self.items[indexPath.row]
         if(self.colors[indexPath.row] == 0 ){
             cell.cellImage.image = UIImage (named: "red")
@@ -169,7 +167,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         }
         else if(self.colors[indexPath.row] == 2 ){
             cell.cellImage.image = UIImage(named: "red")
-        }
+        } */
         return cell
     }
     
