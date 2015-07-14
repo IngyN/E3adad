@@ -15,6 +15,7 @@ class customcellTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        println("hello swifty3")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

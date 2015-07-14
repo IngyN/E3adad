@@ -18,13 +18,15 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(animated: Bool) {
-    
+        
         // Check for existing login, if no session is found then show the login screen.
         
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -34,18 +36,22 @@ class HomeViewController: UIViewController {
         } else {
             self.user_info.text = prefs.valueForKey("national_id") as NSString
         }
-
+        
         
     }
+
+    
+   
     @IBAction func SignOutTapped(sender: UIButton) {
         
+        //Sign Out and go to Sign In
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         
         self.performSegueWithIdentifier("goto_signin", sender: self)
-
+        
     }
-
+    
     /*
     // MARK: - Navigation
 

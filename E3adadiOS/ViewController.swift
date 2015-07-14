@@ -22,9 +22,10 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         super.viewDidLoad()
         get_data(api_url);
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-  //     var nib = UINib(nibName: "customcellTableViewCell", bundle:nil)
-    //   tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+     self.tableView.registerClass(UITableViewCell.self,forCellReuseIdentifier: "cell")
+    /*var nib = UINib(nibName: "customcellTableViewCell", bundle:nil)
+     tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+        println("hello swifty5")*/
     }
 
     func get_data (url:String)
@@ -94,6 +95,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
                     println("reading = \(reading) ")
                     println("submission_date = \(submission_date)) ")
                     println("is_paid = \(is_paid) ")
+                    println("hello swifty4")
                 }
         }
     }
@@ -142,10 +144,14 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!){
         NSLog("didReceiveResponse")
     }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("hello swifty")
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         cell.textLabel?.text = self.items[indexPath.row]
    /*     if(self.colors[indexPath.row] == 0 ){
@@ -158,8 +164,11 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             cell.backgroundColor = UIColor.greenColor()
         } */
     /*    var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as customcellTableViewCell
+       println("hello swifty6")
         cell.cellLabel.text = self.items[indexPath.row]
-        if(self.colors[indexPath.row] == 0 ){
+        cell.cellImage.image = UIImage(named: "home")
+        println("hello swifty7") */
+      /*  if(self.colors[indexPath.row] == 0 ){
             cell.cellImage.image = UIImage (named: "red")
         }
         else if(self.colors[indexPath.row] == 1 ){
@@ -168,6 +177,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         else if(self.colors[indexPath.row] == 2 ){
             cell.cellImage.image = UIImage(named: "red")
         } */
+       // println("hello swifty2")
         return cell
     }
     
