@@ -127,6 +127,8 @@ public class MainScreen extends Activity {
 
             @Override
             public void onClick(View v) {
+                Intent mainToBt= new Intent(MainScreen.this, Bluetooth.class);
+                startActivity(mainToBt);
             }
         });
 
