@@ -6,7 +6,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -29,7 +28,7 @@ import edu.aucegypt.ingyn.e3adad.models.SharedPref;
 
 public class MainScreen extends Activity {
     private ImageButton take_photo,Bluetooth_pair;
-    private ImageView payment,statistics,Signout;
+    private ImageView payment,statistics;
     private TextView last_submission,last_payment;
     Button pay;
     final int REQUEST_PHOTO = 1;
@@ -101,18 +100,7 @@ public class MainScreen extends Activity {
 
         // Sign out button
 
-        Signout = (ImageView) findViewById(R.id.out);
-        Signout.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent mainToOut = new Intent(MainScreen.this, Register.class);
-                // DO i need to remove the shared preferences thing?
-                SharedPref sp = new SharedPref(MainScreen.this);
-                sp.DeleteAll();
-                startActivity(mainToOut);
-            }
-        });
         payment = (ImageView) findViewById(R.id.pay);
         payment.setOnClickListener(new View.OnClickListener() {
 
@@ -235,13 +223,16 @@ public class MainScreen extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Intent mainToOut = new Intent(MainScreen.this, Register.class);
+                // DO i need to remove the shared preferences thing?
+                SharedPref sp = new SharedPref(MainScreen.this);
+                SharedPref.DeleteAll();
+                startActivity(mainToOut);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

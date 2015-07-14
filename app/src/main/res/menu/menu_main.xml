@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/out"
+    <item android:id="@+id/logout"
         android:icon="@drawable/logout"
         android:title="Logout"
         android:orderInCategory="100"
-        yourapp:showAsAction="always" />
+        app:showAsAction="always"/>
 </menu>
+    <!--app:showAsAction="always"-->
