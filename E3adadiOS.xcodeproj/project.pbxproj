@@ -14,6 +14,9 @@
 		BDF995631B52882200CC3EEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDF995621B52882200CC3EEC /* Images.xcassets */; };
 		BDF995661B52882300CC3EEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDF995641B52882300CC3EEC /* LaunchScreen.xib */; };
 		BDF995721B52882300CC3EEC /* E3adadiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF995711B52882300CC3EEC /* E3adadiOSTests.swift */; };
+		F42C49E21B5491F000A74A10 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42C49DF1B5491F000A74A10 /* HomeViewController.swift */; };
+		F42C49E31B5491F000A74A10 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42C49E01B5491F000A74A10 /* SignInViewController.swift */; };
+		F42C49E41B5491F000A74A10 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42C49E11B5491F000A74A10 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		BDF9956B1B52882300CC3EEC /* E3adadiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E3adadiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF995701B52882300CC3EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDF995711B52882300CC3EEC /* E3adadiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3adadiOSTests.swift; sourceTree = "<group>"; };
+		F42C49DF1B5491F000A74A10 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F42C49E01B5491F000A74A10 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		F42C49E11B5491F000A74A10 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,9 @@
 				BDF9955F1B52882200CC3EEC /* Main.storyboard */,
 				BDF995621B52882200CC3EEC /* Images.xcassets */,
 				8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */,
+				F42C49DF1B5491F000A74A10 /* HomeViewController.swift */,
+				F42C49E01B5491F000A74A10 /* SignInViewController.swift */,
+				F42C49E11B5491F000A74A10 /* RegisterViewController.swift */,
 				BDF995641B52882300CC3EEC /* LaunchScreen.xib */,
 				BDF995591B52882200CC3EEC /* Supporting Files */,
 			);
@@ -218,6 +227,9 @@
 				8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */,
 				BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */,
 				BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */,
+				F42C49E41B5491F000A74A10 /* RegisterViewController.swift in Sources */,
+				F42C49E31B5491F000A74A10 /* SignInViewController.swift in Sources */,
+				F42C49E21B5491F000A74A10 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
