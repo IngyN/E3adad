@@ -22,6 +22,10 @@
         android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission
         android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"/>
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
         android:allowBackup="true"
@@ -36,6 +40,10 @@
         <activity
             android:name=".activities.Camera_scan"
             android:label="@string/title_activity_camera_scan" >
+        </activity>
+        <activity
+            android:name=".activities.Bluetooth"
+            android:label="Bluetooth Discovery" >
         </activity>
         <activity
             android:name=".activities.SplashScreen"
