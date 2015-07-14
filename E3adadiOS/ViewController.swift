@@ -159,7 +159,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             cell.backgroundColor = UIColor.greenColor()
         } */ 
 */
-        var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! customcellTableViewCell
+        var cell: customcellTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as customcellTableViewCell
         cell.cellLabel.text = self.items[indexPath.row]
         if(self.colors[indexPath.row] == 0 ){
             cell.cellImage.image = UIImage (named: "red")
