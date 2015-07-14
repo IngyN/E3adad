@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1A903EE-91BC-4A55-BBF1-95D3B748B991</string>
+	<key>IDESourceControlProjectName</key>
+	<string>E3adadiOS</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>61746CEC7EB0B7B8E6336236D36DB90247E6D771</key>
+		<string>https://github.com/IngyN/E3adad.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>E3adadiOS.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>61746CEC7EB0B7B8E6336236D36DB90247E6D771</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/IngyN/E3adad.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>61746CEC7EB0B7B8E6336236D36DB90247E6D771</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>61746CEC7EB0B7B8E6336236D36DB90247E6D771</string>
+			<key>IDESourceControlWCCName</key>
+			<string>E3adad_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
