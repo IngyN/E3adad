@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>38D9009B322140394B9DA7467F68950B56B35FF5</key>
-		<string>../../../../SwiftHTTP</string>
+		<string>../../../SwiftHTTP</string>
 		<key>61746CEC7EB0B7B8E6336236D36DB90247E6D771</key>
 		<string>../..</string>
 	</dict>
