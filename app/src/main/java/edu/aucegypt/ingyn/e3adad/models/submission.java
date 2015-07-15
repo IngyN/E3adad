@@ -163,7 +163,7 @@ public class submission {
             String dateString = fmt.format(this.payment_date);
             return dateString;
         }
-        else return "   - -  ";
+        else return "      --  --    ";
     }
 
     public int getIs_paid() { return this.is_paid;}
