@@ -135,7 +135,6 @@ public class submission {
     public String getSubmission_month()
     {
         if (submission_date!=null) {
-            String month = String.valueOf(submission_date.getMonth());
             String stringMonth = (String) android.text.format.DateFormat.format("MMM", submission_date);
             return stringMonth;
         }
