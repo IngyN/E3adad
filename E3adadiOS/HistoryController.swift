@@ -10,17 +10,97 @@ import UIKit
 
 class HistoryController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var subs : [Submission] = [Submission(), Submission(), Submission()]
+    var subs : [Submission] = []
+    var api_url = "http://baseetta.com/hatem/e3adad/history.php?user_id=47"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        get_data(api_url);
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    func get_data (url:String)
+    {
+        let httpMethod = "GET"
+        let timeout = 15
+        let url = NSURL(string: url)
+        let urlRequest = NSMutableURLRequest(URL: url!,
+            cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData,
+            timeoutInterval: 15.0)
+        let queue = NSOperationQueue()
+        
+        NSURLConnection.sendAsynchronousRequest(
+            urlRequest,
+            queue: queue,
+            completionHandler: {(response: NSURLResponse!, data: NSData!, error: NSError!) in
+                if data.length > 0 && error == nil{
+                    
+                    let json = NSString(data: data, encoding: NSASCIIStringEncoding)
+                    self.extract_json(json!)
+                    self.subs = self.subs.reverse();
+                    self.refresh_table();
+                    //                    println("anything!!!!");
+                    //                    self.items.append("Ay shit tayeb?");
+                    
+                } else if data.length == 0 && error == nil{
+                    
+                    println("Nothing was downloaded")
+                    
+                } else if error != nil
+                {
+                    println("Error happened = \(error)")
+                }
+            }
+        )
+    }
+    
+    func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!){
+        NSLog("didReceiveResponse")
+    }
+    
+    func refresh_table(){
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
+            return
+        })
+    }
+    
+    func extract_json (data : NSString!)
+    {
+        
+        var p : NSError?;
+        let jsonData:NSData = data.dataUsingEncoding(NSASCIIStringEncoding)!
+        let json = JSON(data: jsonData, options: nil, error: &p)
+        if p != nil {
+            println("Json parse Error");
+        }
+        else {
+            let Submissions = json["results"]
+            for (index, object) in Submissions {
+                let submission_id: String = object["submission_id"].stringValue
+                let reading: String = object["reading"].stringValue
+                let submission_date: String = object["submission_date"].stringValue
+                let payment_date: String = object["payment_date"].stringValue
+                let is_paid: Int = object["is_paid"].intValue
+                let priceS : String = object ["price"].stringValue
+                let price : Double = (priceS as NSString).doubleValue;
+                
+                // Should get Device and user id from Shared Prefs!!!! 
+                
+                let s : status = status (x: is_paid);
+                
+                var isub : Submission = Submission ( id: submission_id, userid: "47", deviceid: "0", read: reading, price: price, sub_date: submission_date, pay_date: payment_date, is_paid: s)
+                
+                subs.append(isub);
+            }
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

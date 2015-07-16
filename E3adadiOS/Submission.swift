@@ -13,6 +13,20 @@ public enum status {
     case late
     case pending
     case paid
+    
+    init ( x: Int)
+    {
+        if x == 0 {
+            self = late;
+        }
+        else if x == 1 {
+            self = pending;
+        }
+        else {
+            self = paid;
+        }
+    }
+    
 }
 
 class Submission
@@ -44,7 +58,7 @@ class Submission
         
     }
     
-    init (id: String, userid: String, deviceid: String, read: String, price: Double, sub_date: String, pay_date: String, is_paid: status)
+     init (id: String, userid: String, deviceid: String, read: String, price: Double, sub_date: String, pay_date: String, is_paid: status)
     {
         self.device_id = deviceid;
         self.is_paid = is_paid;
@@ -60,10 +74,15 @@ class Submission
         //formatter.format now contains an optional string "dd/MM/yyyy"
         
         var getFormatter : NSDateFormatter  = NSDateFormatter();
-        getFormatter.dateFormat = "yyyy:MM:dd HH:mm:ss";
+        getFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss";
         
         self.submission_date = getFormatter.dateFromString(sub_date)!;
-        self.payment_date = getFormatter.dateFromString(pay_date)!;
+        if (pay_date != "0"){
+            self.payment_date = getFormatter.dateFromString(pay_date)!;
+        }
+        else {
+            self.payment_date = nil;
+        }
     }
     
     func getLabel () -> String {
@@ -77,15 +96,19 @@ class Submission
         month = formati.stringFromDate(submission_date!);
         
         var recorded : String = formatter.stringFromDate(submission_date!);
+        var paid : String;
         
-        var paid : String? = formatter.stringFromDate(payment_date!);
-        
-        if(paid == nil)
-        {
+        if payment_date == nil {
+            
             paid = "  --  ";
         }
+        else {
+           paid = formatter.stringFromDate(payment_date!);
+        }
+         
         
-        return "          \(month)    \(recorded)   \(paid!) ";
+        
+        return "          \(month)    \(recorded)   \(paid) ";
     }
     
     func getPrice () -> String {
