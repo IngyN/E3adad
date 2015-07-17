@@ -33,6 +33,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import edu.aucegypt.ingyn.e3adad.Adapters.HistoryAdapter;
@@ -154,6 +155,9 @@ public class PaymentHistory extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        Collections.reverse(submissionList);
 
         listView = (ListView) findViewById(R.id.listView);
         adapter = new HistoryAdapter(this, submissionList);
