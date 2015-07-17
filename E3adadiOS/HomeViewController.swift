@@ -34,7 +34,8 @@ class HomeViewController: UIViewController {
         if (isLoggedIn != 1) {
             self.performSegueWithIdentifier("goto_signin", sender: self)
         } else {
-            self.user_info.text = prefs.valueForKey("national_id") as NSString
+            //self.user_info.text = prefs.valueForKey("national_id") as NSString
+            self.performSegueWithIdentifier("goto_home", sender: self)
         }
         
         

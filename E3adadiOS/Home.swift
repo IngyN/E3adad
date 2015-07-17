@@ -6,8 +6,18 @@
 //  Copyright (c) 2015 Ingy. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class Home: UIViewController {
 
+    @IBAction func signout_tapped(sender: UIButton) {
+        
+        let appDomain = NSBundle.mainBundle().bundleIdentifier
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
+    
 }

@@ -12,6 +12,8 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    @IBOutlet weak var error: UILabel!
+    
     @IBOutlet weak var email_txt: UITextField!
     @IBOutlet weak var serial_txt: UITextField!
     @IBOutlet weak var national_id_txt: UITextField!
@@ -65,11 +67,19 @@ class SignInViewController: UIViewController {
                 var string: NSString = "\(responseString)"
                 if string.containsString("ERROR") {
                  println("DOESN't WORK")
-                    self.err()
+                    self.error.text = "ERROR"
+                
                 }else{
                     println("WORKS")
-                    self.go()
-            
+                    
+                    var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                    //prefs.setObject(username, forKey: "USERNAME")
+                    prefs.setInteger(1, forKey: "ISLOGGEDIN")
+                    prefs.synchronize()
+                    
+                     self.dismissViewControllerAnimated(true, completion: nil)
+
+                    
                 }
                 
                 
@@ -80,23 +90,7 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func err()
-    {
-        var alertView:UIAlertView = UIAlertView()
-        alertView.title = "Sign in Failed!"
-        alertView.message = "Check your credentials!!"
-        alertView.delegate = self
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
-    }
-    func go()
-    {
-        println("func")
-        
-        self.performSegueWithIdentifier("sign_in", sender: self)
-println("func2")
-    }
-
+   
     /*
     // MARK: - Navigation
 

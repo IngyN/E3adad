@@ -18,6 +18,7 @@
 		BDF995631B52882200CC3EEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDF995621B52882200CC3EEC /* Images.xcassets */; };
 		BDF995661B52882300CC3EEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDF995641B52882300CC3EEC /* LaunchScreen.xib */; };
 		BDF995721B52882300CC3EEC /* E3adadiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF995711B52882300CC3EEC /* E3adadiOSTests.swift */; };
+		F40980CF1B599CE600CC8BF6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40980CE1B599CE600CC8BF6 /* Home.swift */; };
 		F4CD39C11B55352700645092 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD39C01B55352700645092 /* HomeViewController.swift */; };
 		F4CD39C31B55375100645092 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD39C21B55375100645092 /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		BDF9956B1B52882300CC3EEC /* E3adadiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E3adadiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF995701B52882300CC3EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDF995711B52882300CC3EEC /* E3adadiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E3adadiOSTests.swift; sourceTree = "<group>"; };
+		F40980CE1B599CE600CC8BF6 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		F4CD39C01B55352700645092 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F4CD39C21B55375100645092 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				BDF9955D1B52882200CC3EEC /* ViewController.swift */,
 				BDF9955F1B52882200CC3EEC /* Main.storyboard */,
 				F4CD39C21B55375100645092 /* SignInViewController.swift */,
+				F40980CE1B599CE600CC8BF6 /* Home.swift */,
 				F4CD39C01B55352700645092 /* HomeViewController.swift */,
 				BDF995621B52882200CC3EEC /* Images.xcassets */,
 				8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */,
@@ -246,6 +249,7 @@
 				8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */,
 				F4CD39C31B55375100645092 /* SignInViewController.swift in Sources */,
 				BD81C59D1B57E43D00A83D2B /* HistoryController.swift in Sources */,
+				F40980CF1B599CE600CC8BF6 /* Home.swift in Sources */,
 				BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */,
 				7A2BF55D1B548299006E80F6 /* customcellTableViewCell.swift in Sources */,
 				BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */,
