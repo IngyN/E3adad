@@ -32,7 +32,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.4"
             android:layout_marginTop="5dp"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:weightSum="1">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -133,6 +134,7 @@
                     android:id="@+id/progress"
                     android:layout_marginTop="2dp"
                     android:textColor="@color/accent" />
+
             </LinearLayout>
 
         </LinearLayout>
