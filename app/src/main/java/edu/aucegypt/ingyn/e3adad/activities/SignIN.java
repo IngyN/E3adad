@@ -53,6 +53,11 @@ public class SignIN extends Activity {
             MainScreen.MAIN.finish();
         }
 
+        if(SplashScreen.active){
+            SplashScreen.active = false;
+            SplashScreen.Splash.finish();
+        }
+
         ActionBar bar = this.getActionBar();
 
         bar.setTitle("E-3adad");
