@@ -19,17 +19,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.models.SharedPref;
+import edu.aucegypt.ingyn.e3adad.models.user;
+import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 
 public class MainScreen extends Activity {
     private ImageButton take_photo,Bluetooth_pair;
     private ImageView payment,statistics;
     private TextView last_submission,last_payment;
+    private String last_s_id, last_submission_date, not_paid, last_price, last_reading;
     Button pay;
 
     public static Activity MAIN;
@@ -45,6 +56,7 @@ public class MainScreen extends Activity {
         setContentView(R.layout.activity_main);
 
 
+
         active=true;
         MAIN = this;
 
@@ -57,34 +69,8 @@ public class MainScreen extends Activity {
             SplashScreen.Splash.finish();
         }
 
-        //STATUS
-        last_submission = (TextView)findViewById(R.id.last_submission);
-        last_payment = (TextView)findViewById(R.id.last_payment);
+        get_status();
 
-        SharedPref shpr = new SharedPref(this);
-
-        if(SharedPref.getLast_submission()== null){
-            last_submission.setText("You don't have any previous submissions.");
-
-            last_payment.setText("You don't have any pending payments.");
-            last_payment.setTextColor(this.getResources().getColor(R.color.primary));
-        } else{
-            last_submission.setText("Your last reading was ");
-            last_submission.append(SharedPref.getLast_reading());
-            last_submission.append(" KW on ");
-            last_submission.append(SharedPref.getLast_submission());
-
-            if((SharedPref.getNot_paid()) ==  "0")
-            {
-                last_payment.setText("You have " + SharedPref.getNot_paid() +  " unpaid payments.");
-                last_payment.setTextColor(this.getResources().getColor(R.color.late));
-            }else{
-                last_payment.setText("You don't have any pending payments.");
-                last_payment.setTextColor(this.getResources().getColor(R.color.primary));
-            }
-
-
-        }
 
         Calendar calendar = Calendar.getInstance();
         final int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
@@ -251,4 +237,91 @@ public class MainScreen extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void get_status(){
+
+        //API
+        String API_URL = "http://baseetta.com/hatem/e3adad/main.php";
+
+        //user_id
+        SharedPref shpr = new SharedPref(this);
+        JSONObject user = new JSONObject();
+        try {
+            user.put("user_id", SharedPref.getUser_id());
+        }catch (JSONException e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        // POST Request to send Data to the database
+        JsonObjectRequest postRequest = new JsonObjectRequest(Request.Method.POST, API_URL, user ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //Toast.makeText(MainScreen.this, response.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("Volley response Sign In", response.toString());
+                try {
+
+
+                    last_s_id = String.valueOf(response.getString("last_s_id"));
+                    last_submission_date = String.valueOf(response.getString("last_submission"));
+                    last_price = String.valueOf(response.getString("last_price"));
+                    last_reading = String.valueOf(response.getString("last_reading"));
+                    not_paid = String.valueOf(response.getString("not_paid"));
+
+
+                    update_status();
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if((response.has("ERROR")))
+                    Toast.makeText(MainScreen.this, "This user doesn't exist. Please make sure you typed all your info correctly. ", Toast.LENGTH_LONG).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(MainScreen.this, "Network error: " + error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        QueueSingleton.getInstance(this).addToRequestQueue(postRequest);
+    }
+
+    private void update_status()
+    {
+
+        //STATUS
+        last_submission = (TextView)findViewById(R.id.last_submission);
+        last_payment = (TextView)findViewById(R.id.last_payment);
+
+        if(last_submission== null){
+            last_submission.setText("You don't have any previous submissions.");
+
+            last_payment.setText("You don't have any pending payments.");
+            last_payment.setTextColor(this.getResources().getColor(R.color.primary));
+        } else{
+            last_submission.setText("Your last reading was ");
+            last_submission.append(last_reading);
+            last_submission.append(" KW on ");
+            last_submission.append(last_submission_date);
+
+            if(not_paid !=  "0")
+            {
+                last_payment.setText("You have " + not_paid +  " unpaid submissions.");
+                last_payment.setTextColor(this.getResources().getColor(R.color.late));
+            }else{
+                last_payment.setText("You don't have any pending payments.");
+                last_payment.setTextColor(this.getResources().getColor(R.color.primary));
+            }
+
+
+        }
+    }
+
 }

@@ -130,14 +130,7 @@ public class SignIN extends Activity {
                     newUser.setDevice_id(device_id);
                     newUser.setId(user_id);
 
-                    last_s_id = String.valueOf(response.getString("last_s_id"));
-                    last_submission = String.valueOf(response.getString("last_submission"));
-                    last_price = String.valueOf(response.getString("last_price"));
-                    last_reading = String.valueOf(response.getString("last_reading"));
-                    not_paid = String.valueOf(response.getString("not_paid"));
-
-
-                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id, last_s_id, last_submission, last_price, last_reading, not_paid);
+                    SharedPref s = new SharedPref(SignIN.this, user_id, device_id);
                     s.saveData();
 
 

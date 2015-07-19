@@ -66,6 +66,8 @@ public class Bluetooth extends Activity {
 
     public void off(View v){
         BA.disable();
+        //Clear list view after turning of (needs to be tested)
+        //pairedDevices.clear();
         Toast.makeText(getApplicationContext(),"Turned off" ,Toast.LENGTH_LONG).show();
     }
 
