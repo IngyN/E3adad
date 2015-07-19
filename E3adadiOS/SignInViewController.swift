@@ -60,11 +60,47 @@ class SignInViewController: UIViewController {
                 
                 println("response = \(response)")
                 
-                let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                 println("responseString = \(responseString)")
-                
                
-                var string: NSString = "\(responseString)"
+               
+                
+                var p : NSError?;
+                let jsonData:NSData = responseString.dataUsingEncoding(NSASCIIStringEncoding)!
+                let json = JSON(data: jsonData, options: nil, error: &p)
+                if p != nil {
+                    println("Json parse Error");
+                }else{
+                    
+                    if json["ERROR"] != nil {
+                        println("DOESN't WORK")
+                        self.error.text = "ERROR";
+                    }
+                    else
+                    {
+                        println("WORKS")
+                        
+                        let user_id: String = json["user_id"].stringValue
+                        let device_id: String = json["device_id"].stringValue
+                        
+                        var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                        prefs.setObject(user_id, forKey: "user_id")
+                        prefs.setObject(device_id, forKey: "device_id")
+                        prefs.setInteger(1, forKey: "ISLOGGEDIN")
+                        prefs.synchronize()
+                        
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                
+                }
+
+                
+                
+                
+                
+                
+               /* var string: NSString = "\(responseString)"
+                 
                 if string.containsString("ERROR") {
                  println("DOESN't WORK")
                     self.error.text = "ERROR"
@@ -80,7 +116,7 @@ class SignInViewController: UIViewController {
                      self.dismissViewControllerAnimated(true, completion: nil)
 
                     
-                }
+                }*/
                 
                 
             }

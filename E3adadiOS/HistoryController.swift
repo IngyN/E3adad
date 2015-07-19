@@ -10,11 +10,19 @@ import UIKit
 
 class HistoryController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
+
     var subs : [Submission] = []
-    var api_url = "http://baseetta.com/hatem/e3adad/history.php?user_id=47"
+    var api_url = "http://baseetta.com/hatem/e3adad/history.php"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //Get user_id from Prefs and append it to aoi_url
+        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let user_id:NSString = prefs.valueForKey("user_id") as NSString
+        api_url = api_url + "?user_id=\(user_id)"
+        
         get_data(api_url);
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -94,7 +102,11 @@ class HistoryController: UITableViewController, UITableViewDelegate, UITableView
                 
                 let s : status = status (x: is_paid);
                 
-                var isub : Submission = Submission ( id: submission_id, userid: "47", deviceid: "0", read: reading, price: price, sub_date: submission_date, pay_date: payment_date, is_paid: s)
+                //Get user_id from Prefs
+                let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+                let user_id:NSString = prefs.valueForKey("user_id") as NSString
+                
+                var isub : Submission = Submission ( id: submission_id, userid: "\(user_id)", deviceid: "0", read: reading, price: price, sub_date: submission_date, pay_date: payment_date, is_paid: s)
                 
                 subs.append(isub);
             }
