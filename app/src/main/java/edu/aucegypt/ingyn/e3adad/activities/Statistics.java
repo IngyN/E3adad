@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +30,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import edu.aucegypt.ingyn.e3adad.R;
@@ -158,6 +156,9 @@ public class Statistics extends Activity{
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_statistics, menu);
+//        menu.add(0, R.id.share, 0, "Share").setIcon(R.drawable.abc_btn_default_mtrl_shape)
+//                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
         return true;
     }
 

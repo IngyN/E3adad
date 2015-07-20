@@ -32,7 +32,6 @@ import java.util.Calendar;
 
 import edu.aucegypt.ingyn.e3adad.R;
 import edu.aucegypt.ingyn.e3adad.models.SharedPref;
-import edu.aucegypt.ingyn.e3adad.models.user;
 import edu.aucegypt.ingyn.e3adad.network.QueueSingleton;
 
 
@@ -217,6 +216,10 @@ public class MainScreen extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        menu.add(0, R.id.logout, 0, "Logout").setIcon(R.drawable.logout)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
         return true;
     }
 

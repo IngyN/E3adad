@@ -37,7 +37,7 @@
         android:theme="@style/teal_material_theme" >
         <activity
             android:name=".activities.MainScreen"
-            android:label="MainScreen" >
+            android:label="MainScreen">
         </activity>
         <activity
             android:name=".activities.Camera_scan"
