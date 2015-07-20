@@ -15,16 +15,19 @@ class Statistics: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     
+    
     @IBOutlet weak var AvgCons_label: UILabel!
     @IBOutlet weak var AvgCost_label: UILabel!
     @IBOutlet weak var TotalCons_label: UILabel!
     @IBOutlet weak var Progress_label: UILabel!
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let prefs: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let user_id:NSString = prefs.valueForKey("user_id") as! NSString
+        let user_id:NSString = prefs.valueForKey("user_id") as NSString
         
         let urlOne = NSURL(string: stats_url+(user_id as String))
         let urlTwo = NSURL(string: cons_url+(user_id as String))
