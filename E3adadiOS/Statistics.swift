@@ -22,6 +22,7 @@ class Statistics: UIViewController {
     @IBOutlet weak var Progress_label: UILabel!
     
 
+    @IBOutlet var Ta: UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,16 @@ class Statistics: UIViewController {
         
         //  let requestURL = NSURL(string:api_url)
         let request = NSURLRequest(URL: urlOne!)
-        webView.scalesPageToFit = true;
+        // webView.scalesPageToFit = true;
         webView.loadRequest(request)
         
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Ta.selectedImage = UIImage(named: "statsfilled")
+        Ta.image = UIImage (named: "Image-1")
     }
     
     override func didReceiveMemoryWarning() {

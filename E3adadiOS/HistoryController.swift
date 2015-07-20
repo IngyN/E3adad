@@ -22,8 +22,8 @@ class HistoryController: UITableViewController, UITableViewDelegate, UITableView
         
         //Get user_id from Prefs and append it to aoi_url
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        //let user_id:NSString = prefs.valueForKey("user_id") as NSString
-        let user_id:NSString = "47" ;
+        let user_id:NSString = prefs.valueForKey("user_id") as NSString
+        //let user_id:NSString = "47" ;
         api_url = api_url + "?user_id=\(user_id)"
         
         get_data(api_url);
@@ -158,7 +158,7 @@ class HistoryController: UITableViewController, UITableViewDelegate, UITableView
             image = UIImage(named: "status_paid")!
         }
         
-        var imageView = UIImageView(frame: CGRectMake(15, 5, 30, 30)); // set as you want
+        var imageView = UIImageView(frame: CGRectMake(20, 12, 20, 20)); // set as you want
         
         imageView.image = image;
         

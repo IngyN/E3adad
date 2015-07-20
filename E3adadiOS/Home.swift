@@ -10,6 +10,9 @@ import UIKit
 
 class Home: UIViewController {
 
+    @IBOutlet var Ta: UITabBarItem!
+  
+    
     @IBAction func signout_tapped(sender: UIButton) {
         
         let appDomain = NSBundle.mainBundle().bundleIdentifier
@@ -18,6 +21,13 @@ class Home: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
         
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Ta.selectedImage = UIImage(named: "home")
+        Ta.image = UIImage (named: "home5-01")
     }
     
 }

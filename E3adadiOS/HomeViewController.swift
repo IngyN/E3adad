@@ -25,6 +25,8 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    
     override func viewDidAppear(animated: Bool) {
         
         // Check for existing login, if no session is found then show the login screen.
