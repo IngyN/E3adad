@@ -108,11 +108,11 @@ class Submission
          
         
         
-        return "          \(month)    \(recorded)   \(paid) ";
+        return "          \(month)   \(recorded)  \(paid) ";
     }
     
     func getPrice () -> String {
         
-        return "\(price)";
+        return "\(price) LE";
     }
 }

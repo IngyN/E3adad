@@ -36,6 +36,7 @@ class Statistics: UIViewController {
         
         //  let requestURL = NSURL(string:api_url)
         let request = NSURLRequest(URL: urlOne!)
+        webView.scalesPageToFit = true;
         webView.loadRequest(request)
         
         // Do any additional setup after loading the view.

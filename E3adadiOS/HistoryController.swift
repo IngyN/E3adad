@@ -17,10 +17,13 @@ class HistoryController: UITableViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let topLayoutGuide: CGFloat = self.topLayoutGuide.length;
+        tableView.contentInset = UIEdgeInsetsMake(topLayoutGuide, 0, 0, 0);
         
         //Get user_id from Prefs and append it to aoi_url
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let user_id:NSString = prefs.valueForKey("user_id") as NSString
+        //let user_id:NSString = prefs.valueForKey("user_id") as NSString
+        let user_id:NSString = "47" ;
         api_url = api_url + "?user_id=\(user_id)"
         
         get_data(api_url);
