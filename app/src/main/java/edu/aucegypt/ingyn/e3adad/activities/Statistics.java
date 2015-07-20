@@ -126,6 +126,7 @@ public class Statistics extends Activity{
         view.setDrawingCacheEnabled(false);
         view.buildDrawingCache();
         Bitmap bitmap = view.getDrawingCache();
+        // take the status bar out of the image
         Rect rect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         int statusBarHeight = rect.top;

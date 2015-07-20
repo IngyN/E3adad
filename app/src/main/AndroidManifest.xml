@@ -37,21 +37,25 @@
         android:theme="@style/teal_material_theme" >
         <activity
             android:name=".activities.MainScreen"
-            android:label="MainScreen">
+            android:label="MainScreen" android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.Camera_scan"
-            android:label="@string/title_activity_camera_scan" >
+            android:label="@string/title_activity_camera_scan" android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.Bluetooth"
-            android:label="Bluetooth Discovery" >
+            android:label="Bluetooth Discovery" android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="E-3adad"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,25 +64,33 @@
         </activity>
         <activity
             android:name=".activities.Statistics"
-            android:label="@string/title_activity_statistics" >
+            android:label="@string/title_activity_statistics"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.PaymentHistory"
-            android:label="@string/title_activity_payment_history" >
+            android:label="@string/title_activity_payment_history"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.SignIN"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
 
         </activity>
         <activity
             android:name=".activities.Register"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
 
         </activity>
         <activity
             android:name=".activities.PaymentAction"
-            android:label="@string/title_activity_payment" >
+            android:label="@string/title_activity_payment" android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
         </activity>
         <activity
             android:name=".activities.Temporary"
