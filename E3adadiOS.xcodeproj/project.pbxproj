@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7A2BF55B1B5480F0006E80F6 /* Customcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2BF55A1B5480F0006E80F6 /* Customcell.xib */; };
 		7A2BF55D1B548299006E80F6 /* customcellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2BF55C1B548299006E80F6 /* customcellTableViewCell.swift */; };
+		7A88C6B51B5C8789000A2841 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88C6B41B5C8789000A2841 /* Statistics.swift */; };
 		8A8E579C1B53C31300BA5E2F /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */; };
 		BD81C59D1B57E43D00A83D2B /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD81C59C1B57E43D00A83D2B /* HistoryController.swift */; };
 		BD81C5A01B57E5A500A83D2B /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD81C59F1B57E5A500A83D2B /* Submission.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		7A2BF55A1B5480F0006E80F6 /* Customcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Customcell.xib; sourceTree = "<group>"; };
 		7A2BF55C1B548299006E80F6 /* customcellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customcellTableViewCell.swift; sourceTree = "<group>"; };
+		7A88C6B41B5C8789000A2841 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		8A8E579B1B53C31300BA5E2F /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		BD81C59C1B57E43D00A83D2B /* HistoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		BD81C59F1B57E5A500A83D2B /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -106,6 +108,7 @@
 				BDF9955B1B52882200CC3EEC /* AppDelegate.swift */,
 				BDF9955D1B52882200CC3EEC /* ViewController.swift */,
 				BDF9955F1B52882200CC3EEC /* Main.storyboard */,
+				7A88C6B41B5C8789000A2841 /* Statistics.swift */,
 				F4CD39C21B55375100645092 /* SignInViewController.swift */,
 				F40980CE1B599CE600CC8BF6 /* Home.swift */,
 				F4CD39C01B55352700645092 /* HomeViewController.swift */,
@@ -253,6 +256,7 @@
 				BDF9955E1B52882200CC3EEC /* ViewController.swift in Sources */,
 				7A2BF55D1B548299006E80F6 /* customcellTableViewCell.swift in Sources */,
 				BDF9955C1B52882200CC3EEC /* AppDelegate.swift in Sources */,
+				7A88C6B51B5C8789000A2841 /* Statistics.swift in Sources */,
 				BD81C5A01B57E5A500A83D2B /* Submission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
